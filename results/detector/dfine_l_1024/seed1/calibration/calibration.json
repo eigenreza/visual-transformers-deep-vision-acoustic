@@ -1,0 +1,66 @@
+{
+  "experiment": "dfine_l_1024",
+  "seed": 1,
+  "n_detections": 453000,
+  "n_true_positives": 4048,
+  "focus_year": "2018",
+  "n_focus_detections": 8400,
+  "chosen": "platt_all",
+  "calibrator": {
+    "method": "platt",
+    "params": {
+      "slope": 1.7103035811080163,
+      "intercept": -1.2195115281018447
+    }
+  },
+  "ece_all": {
+    "identity": 0.019484822346937842,
+    "temperature_all": 0.0020470569243668845,
+    "temperature_2018": 0.0028062737477122196,
+    "platt_all": 0.0003287143219777469,
+    "platt_2018": 0.0020535343457993476,
+    "isotonic_all": 1.389538150781858e-10
+  },
+  "ece_2018": {
+    "identity": 0.023286695480346675,
+    "temperature_all": 0.004701902352922795,
+    "temperature_2018": 0.005349700783343689,
+    "platt_all": 0.0030890666361537266,
+    "platt_2018": 0.0016755136408828414,
+    "isotonic_all": 0.002826843522204529
+  },
+  "nll_all": {
+    "identity": 0.025988411779190576,
+    "temperature_all": 0.01002675693909785,
+    "temperature_2018": 0.010266691786704085,
+    "platt_all": 0.008708619386282253,
+    "platt_2018": 0.010142407871585468,
+    "isotonic_all": 0.008500394655167024
+  },
+  "nll_2018": {
+    "identity": 0.03206155684164022,
+    "temperature_all": 0.017628659281192796,
+    "temperature_2018": 0.017305937108514507,
+    "platt_all": 0.013021012496468781,
+    "platt_2018": 0.011550704655633907,
+    "isotonic_all": 0.012121057967776823
+  },
+  "cross_fitted_ece_all_above_0.05": {
+    "temperature": 0.025810159632808114,
+    "platt": 0.007733133842154882,
+    "isotonic": 0.009762590008015328,
+    "identity": 0.08447968611232212
+  },
+  "cross_fitted_ece_2018_above_0.05": {
+    "temperature": 0.0626867987453798,
+    "platt": 0.04588890299142895,
+    "isotonic": 0.041204060582580644,
+    "identity": 0.10974525962484051
+  },
+  "cross_fitted_nll_all_above_0.05": {
+    "temperature": 0.11832171171960514,
+    "platt": 0.10270964505266486,
+    "isotonic": 0.10517067425320202,
+    "identity": 0.16224102612288835
+  }
+}

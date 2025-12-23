@@ -1,0 +1,15 @@
+framework: retinanet
+num_classes: 15
+input_size: 1024
+epochs: 40
+batch_size: 8
+lr: 0.0001
+weight_decay: 0.0001
+warmup_iterations: 500
+augmentation:
+  photometric_p: 0.5
+  iou_crop_p: 0.5
+  zoom_out: false
+  hflip: true
+  multiscale: true
+seed: 0

@@ -1,0 +1,13 @@
+{
+  "experiment": "retinanet_1024",
+  "seed": 0,
+  "framework": "retinanet",
+  "input_size": 1024,
+  "epochs_run": 40,
+  "best_checkpoint": "<scratch_dir>/runs/detector/retinanet_1024/seed0/framework/best.pth",
+  "best_epoch": 23,
+  "best_val_map": 0.5066314697698391,
+  "best_val_map50": 0.7365174977695401,
+  "last_val_map": 0.4898710924217429,
+  "weights": "<project_dir>/weights/detector/retinanet_1024_seed0.pth"
+}

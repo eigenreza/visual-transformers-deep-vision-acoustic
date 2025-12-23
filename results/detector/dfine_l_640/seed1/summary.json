@@ -1,0 +1,13 @@
+{
+  "experiment": "dfine_l_640",
+  "seed": 1,
+  "framework": "dfine",
+  "input_size": 640,
+  "epochs_run": 40,
+  "best_checkpoint": "<scratch_dir>/runs/detector/dfine_l_640/seed1/framework/best_stg2.pth",
+  "best_epoch": 34,
+  "best_val_map": 0.5822168379054283,
+  "best_val_map50": 0.748904529162565,
+  "last_val_map": 0.5820269741380847,
+  "weights": "<project_dir>/weights/detector/dfine_l_640_seed1.pth"
+}

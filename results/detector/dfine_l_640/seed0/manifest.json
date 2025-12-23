@@ -1,0 +1,195 @@
+{
+  "stage": "train-detector",
+  "created_utc": "2026-10-01T16:26:05+00:00",
+  "package_version": "0.1.0",
+  "hostname": "<host>",
+  "config_hash": "9ad8766d26da4bef",
+  "config": {
+    "stage": "detector",
+    "seed": 0,
+    "n_workers": 24,
+    "dataset": {
+      "coco_dir": "runs/dataset/coco",
+      "images_subdir": "images",
+      "num_classes": 15
+    },
+    "frameworks": {
+      "rtdetrv2": {
+        "repo": "RT-DETR/rtdetrv2_pytorch",
+        "licence": "Apache-2.0",
+        "base_configs": {
+          "l": "configs/rtdetrv2/rtdetrv2_r50vd_6x_coco.yml",
+          "x": "configs/rtdetrv2/rtdetrv2_r101vd_6x_coco.yml"
+        },
+        "pretrained": {
+          "l": "pretrained/rtdetrv2_r50vd_2x_coco_objects365_from_paddle.pth",
+          "x": "pretrained/rtdetrv2_r101vd_2x_coco_objects365_from_paddle.pth"
+        }
+      },
+      "dfine": {
+        "repo": "D-FINE",
+        "licence": "Apache-2.0",
+        "base_configs": {
+          "l": "configs/dfine/custom/dfine_hgnetv2_l_custom.yml",
+          "x": "configs/dfine/custom/dfine_hgnetv2_x_custom.yml"
+        },
+        "pretrained": {
+          "l": "pretrained/dfine_l_obj2coco_e25.pth",
+          "x": "pretrained/dfine_x_obj2coco.pth"
+        }
+      },
+      "retinanet": {
+        "licence": "BSD-3-Clause",
+        "pretrained": "torchvision"
+      }
+    },
+    "defaults": {
+      "epochs": 40,
+      "batch_size": 16,
+      "lr": 0.0001,
+      "backbone_lr": 1e-05,
+      "weight_decay": 0.0001,
+      "warmup_iterations": 500,
+      "checkpoint_freq": 10,
+      "stop_augmentation_epochs_before_end": 6,
+      "augmentation": {
+        "photometric_p": 0.5,
+        "iou_crop_p": 0.5,
+        "zoom_out": false,
+        "hflip": true,
+        "multiscale": true
+      }
+    },
+    "experiments": {
+      "dfine_l_640": {
+        "framework": "dfine",
+        "size": "l",
+        "input_size": 640
+      },
+      "dfine_l_1024": {
+        "framework": "dfine",
+        "size": "l",
+        "input_size": 1024,
+        "batch_size": 8
+      },
+      "dfine_l_800": {
+        "framework": "dfine",
+        "size": "l",
+        "input_size": 800,
+        "batch_size": 12
+      },
+      "rtdetrv2_l_640": {
+        "framework": "rtdetrv2",
+        "size": "l",
+        "input_size": 640
+      },
+      "rtdetrv2_l_1024": {
+        "framework": "rtdetrv2",
+        "size": "l",
+        "input_size": 1024,
+        "batch_size": 8
+      },
+      "dfine_x_640": {
+        "framework": "dfine",
+        "size": "x",
+        "input_size": 640
+      },
+      "dfine_x_1024": {
+        "framework": "dfine",
+        "size": "x",
+        "input_size": 1024,
+        "batch_size": 8
+      },
+      "retinanet_640": {
+        "framework": "retinanet",
+        "size": "r50",
+        "input_size": 640
+      },
+      "retinanet_1024": {
+        "framework": "retinanet",
+        "size": "r50",
+        "input_size": 1024,
+        "batch_size": 8
+      },
+      "smoke_dfine_l_640": {
+        "framework": "dfine",
+        "size": "l",
+        "input_size": 640,
+        "epochs": 1,
+        "batch_size": 8,
+        "checkpoint_freq": 1
+      },
+      "smoke_retinanet_640": {
+        "framework": "retinanet",
+        "size": "r50",
+        "input_size": 640,
+        "epochs": 1,
+        "batch_size": 8
+      }
+    },
+    "evaluation": {
+      "iou_threshold": 0.5,
+      "score_threshold": 0.001,
+      "n_boot": 200,
+      "batch_size": 16
+    },
+    "calibration": {
+      "methods": [
+        "temperature",
+        "platt",
+        "isotonic"
+      ],
+      "method": "platt",
+      "fit_on": "all",
+      "focus_year": "2018",
+      "min_focus_detections": 200,
+      "n_bins": 15
+    },
+    "paths": {
+      "source_data": "<source_data>",
+      "annotated_data": "<annotated_data>",
+      "annotated_data_source": "<annotated_data_source>",
+      "project_dir": "<project_dir>",
+      "scratch_dir": "<scratch_dir>"
+    },
+    "experiment": "dfine_l_640"
+  },
+  "inputs": {
+    "train": {
+      "path": "<project_dir>/runs/dataset/coco/train.json",
+      "kind": "file",
+      "size": 3376002,
+      "mtime": 1790860902.760077
+    },
+    "val": {
+      "path": "<project_dir>/runs/dataset/coco/val.json",
+      "kind": "file",
+      "size": 666327,
+      "mtime": 1790860903.0520601
+    },
+    "pretrained": {
+      "path": "<scratch_dir>/pretrained/dfine_l_obj2coco_e25.pth",
+      "kind": "file",
+      "size": 126083766,
+      "mtime": 1790861144.3596725
+    }
+  },
+  "outputs": {
+    "framework_config.yml": {
+      "sha256": "f6b225752df2277320b5058f6ffa10204aaf1e1e1dbc9ff678349ed1b7e90a93",
+      "size": 2154
+    },
+    "training_log.csv": {
+      "sha256": "29921c5f2973f18c8a742b54135bf87f528287ec27200e872e12549ce168274d",
+      "size": 58790
+    },
+    "../../../../weights/detector/dfine_l_640_seed0.pth": {
+      "sha256": "4980679f00f637d0ae6cdba76943b4e764bc1d8ce178da18105f39ac59c94e39",
+      "size": 500252596
+    },
+    "summary.json": {
+      "sha256": "33e482118830a44f7789cd8f9778b7d2a4a4d0d68fad522362b1528cf47d9721",
+      "size": 457
+    }
+  }
+}

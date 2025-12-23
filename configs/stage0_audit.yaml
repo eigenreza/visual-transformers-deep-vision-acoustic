@@ -1,0 +1,37 @@
+# Stage 0: audit of the raw data sources.
+stage: audit
+seed: 0
+n_workers: 32
+
+zarr:
+  store: S2018105_sv.zarr
+  # Linear sv values at or below these levels count as "at the floor".
+  floors_db: [-100, -90, -80]
+  histogram_range_db: [-130, 0]
+  histogram_bin_db: 1.0
+  gap_thresholds_s: [5, 10, 60, 600]
+  # Time windows used to report acoustic coverage of each camera transect.
+  # Start and end are generous bounds around the camera recording.
+  transect_windows:
+    20180505T0637Z: ["2018-05-05T06:00:00", "2018-05-05T09:00:00"]
+    20180509T0018Z: ["2018-05-08T23:45:00", "2018-05-09T03:00:00"]
+    20180509T0805Z: ["2018-05-09T07:30:00", "2018-05-09T10:45:00"]
+    20180509T1938Z: ["2018-05-09T19:00:00", "2018-05-09T22:30:00"]
+
+annotations:
+  image_extensions: [".jpg", ".jpeg", ".png"]
+  # Nested copies of the whole tree (images/images and xml/xml) hold only
+  # byte-identical duplicates and are skipped.
+  exclude_top_level_dirs: [images, xml]
+  # Compare the copied collection with its original source when the path is set.
+  reconcile_with_source: true
+
+transects:
+  ids_2018: [20180505T0637Z, 20180509T0018Z, 20180509T0805Z, 20180509T1938Z]
+  ids_2024: [20241108T1550Z, 20241109T0155Z]
+  cameras: [Left, Right]
+  metadata_file: deepvision.xml
+  join_tolerance_ms: 50
+  gap_thresholds_s: [1, 5, 60]
+  # Depth values outside this range (metres) are treated as invalid.
+  depth_valid_range_m: [0.5, 1500]

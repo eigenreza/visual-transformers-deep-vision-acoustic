@@ -1,0 +1,17 @@
+class_name,boxes_val,images_val,boxes_test,images_test,boxes_train,images_train,boxes_test_2024,images_test_2024
+maurolicus,1018,323,805,279,9028,1421,0,0
+krill,683,191,2482,411,4050,1728,142,79
+benthosema,955,638,608,315,3770,1425,0,0
+redfish,275,275,14,14,767,395,0,0
+bluewhiting,126,83,228,224,804,262,286,117
+gelatinous,693,328,96,58,1035,524,0,0
+mackerel,59,29,100,44,894,200,0,0
+herring,98,29,98,43,457,362,0,0
+gonatus,1,1,3,3,647,196,0,0
+sergestes,28,26,82,63,525,423,0,0
+capelin,0,0,170,81,163,89,1,1
+pasiphaea,9,8,62,27,178,117,0,0
+barracudina,51,43,28,28,88,88,18,18
+unidentified,220,170,208,70,621,338,0,0
+all_images,4216,1510,4984,1240,23027,5644,447,130
+negatives,0,41,0,96,0,292,0,0

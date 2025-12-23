@@ -1,0 +1,127 @@
+{
+  "experiment": "dfine_l_1024",
+  "seed": 0,
+  "split": "val",
+  "coco": {
+    "map": 0.5849940791841041,
+    "map50": 0.7681079310433393,
+    "map75": 0.6231554348150922,
+    "map_small": 0.2085978195410705,
+    "map_medium": 0.39022301378298263,
+    "map_large": 0.6587226482946276
+  },
+  "n_gt": {
+    "maurolicus": 1018,
+    "krill": 683,
+    "benthosema": 955,
+    "redfish": 275,
+    "bluewhiting": 126,
+    "gelatinous": 693,
+    "mackerel": 59,
+    "herring": 98,
+    "gonatus": 1,
+    "sergestes": 28,
+    "capelin": 0,
+    "pasiphaea": 9,
+    "barracudina": 51,
+    "unidentified": 220
+  },
+  "n_images": 1510,
+  "n_predictions": 453000,
+  "thresholds_source": "this split",
+  "map50_by_slice": {
+    "all": {
+      "value": 0.8332829447671224,
+      "ci_low": 0.7675494412184021,
+      "ci_high": 0.856885072639279,
+      "n_images": 1510
+    },
+    "2017": {
+      "value": 0.9284362471482683,
+      "ci_low": 0.8886981217206888,
+      "ci_high": 0.9684248630363497,
+      "n_images": 74
+    },
+    "2018": {
+      "value": 0.8691261767257252,
+      "ci_low": 0.8088465491135127,
+      "ci_high": 0.9650475153837224,
+      "n_images": 28
+    },
+    "2020": {
+      "value": 0.8047962841031635,
+      "ci_low": 0.7594026571907256,
+      "ci_high": 0.854926788206903,
+      "n_images": 361
+    },
+    "2022": {
+      "value": 0.8785739824436665,
+      "ci_low": 0.717743408746651,
+      "ci_high": 0.9094117891701523,
+      "n_images": 390
+    },
+    "2023": {
+      "value": 0.7943368965893409,
+      "ci_low": 0.7045839862385987,
+      "ci_high": 0.8413929804415087,
+      "n_images": 657
+    },
+    "2020-2023": {
+      "value": 0.8043450345328715,
+      "ci_low": 0.72488668442054,
+      "ci_high": 0.8294981721610465,
+      "n_images": 1408
+    }
+  },
+  "class_set_map50_by_slice": {
+    "map50_label_classes@all": {
+      "value": 0.8083566469015431,
+      "ci_low": 0.7777945994013705,
+      "ci_high": 0.8373798847173539,
+      "n_images": 1510,
+      "n_classes": 5
+    },
+    "map50_label_classes@2017": {
+      "value": 0.9284362471482683,
+      "ci_low": 0.8886981217206888,
+      "ci_high": 0.9684248630363497,
+      "n_images": 74,
+      "n_classes": 5
+    },
+    "map50_label_classes@2018": {
+      "value": 0.8691261767257252,
+      "ci_low": 0.8088465491135127,
+      "ci_high": 0.9650475153837224,
+      "n_images": 28,
+      "n_classes": 3
+    },
+    "map50_label_classes@2020": {
+      "value": 0.9160897603798508,
+      "ci_low": 0.8735440355259562,
+      "ci_high": 0.9483233296906386,
+      "n_images": 361,
+      "n_classes": 2
+    },
+    "map50_label_classes@2022": {
+      "value": 0.8067365563524965,
+      "ci_low": 0.7500135717810615,
+      "ci_high": 0.8576145309854524,
+      "n_images": 390,
+      "n_classes": 3
+    },
+    "map50_label_classes@2023": {
+      "value": 0.6240304064383922,
+      "ci_low": 0.5920626010711949,
+      "ci_high": 0.6576977702681288,
+      "n_images": 657,
+      "n_classes": 2
+    },
+    "map50_label_classes@2020-2023": {
+      "value": 0.701367175517453,
+      "ci_low": 0.6527656501928052,
+      "ci_high": 0.753229076247806,
+      "n_images": 1408,
+      "n_classes": 3
+    }
+  }
+}

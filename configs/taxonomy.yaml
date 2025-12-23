@@ -1,0 +1,66 @@
+# Taxonomy for detector training.
+#
+# Raw labels in the annotation collection are mapped to classes by exact
+# string match. A class is kept when the collection holds at least about two
+# hundred boxes of it, which is the smallest count for which per-class
+# precision and recall can be estimated with useful intervals. Raw labels that
+# differ only in capitalisation or spelling denote the same taxon and are
+# merged. Labels that annotators used for objects they could not identify, and
+# taxa with too few boxes to form a class, are mapped to the class
+# "unidentified": a detector trained without them would learn to treat those
+# animals as background. Detections of that class are not used as acoustic
+# targets; their per-frame count is kept as a diagnostic.
+#
+# Every raw label in the collection must appear exactly once below. A label
+# missing from the mapping stops the dataset build.
+
+classes:
+  - maurolicus
+  - krill
+  - benthosema
+  - redfish
+  - bluewhiting
+  - gelatinous
+  - mackerel
+  - herring
+  - gonatus
+  - sergestes
+  - capelin
+  - pasiphaea
+  - barracudina
+  - unidentified
+
+mapping:
+  maurolicus: [maurolicus, Maurolicus, maurolicus_old]
+  krill: [krill, Krill]
+  benthosema: [benthosema, Benthosema, benthosema_old, benthosema_with_paracite]
+  redfish: [redfish, red_fish]
+  bluewhiting: [bluewhiting, blue_whiting, "blue whiting"]
+  # Periphylla is a jellyfish; the 2020 annotators used the group name.
+  gelatinous: [Gelatinous, periphylla, jellyfish]
+  mackerel: [mackerel]
+  herring: [herring]
+  gonatus: [gonatus]
+  sergestes: [sergestes, Sergestes]
+  capelin: [capelin]
+  pasiphaea: [pasiphaea, Pasiphaea]
+  barracudina: [barracudina]
+  unidentified:
+    # Annotator conventions for objects that could not be identified.
+    - UID
+    - Uid_fish
+    - undefined
+    - unknown
+    - mesopelagic
+    - mesopelagic_fish
+    - large_fish
+    # Taxa with fewer than sixty boxes in the collection.
+    - saithe
+    - saith
+    - cod
+    - Gadoid
+    - gadidae
+    - copepode
+    - mysidae
+    - crustaceae
+    - pelagic_shrimp

@@ -1,0 +1,154 @@
+{
+  "stage": "build-annotation-dataset",
+  "created_utc": "2026-10-01T13:21:43+00:00",
+  "package_version": "0.1.0",
+  "hostname": "<host>",
+  "config_hash": "cd56cf8d12ac75d1",
+  "config": {
+    "stage": "dataset",
+    "seed": 0,
+    "n_workers": 32,
+    "taxonomy_file": "configs/taxonomy.yaml",
+    "annotations": {
+      "image_extensions": [
+        ".jpg",
+        ".jpeg",
+        ".png"
+      ],
+      "exclude_top_level_dirs": [
+        "images",
+        "xml"
+      ],
+      "paired_statuses": [
+        "paired",
+        "paired_by_stem"
+      ]
+    },
+    "splits": {
+      "holdout_years": {
+        "2024": "test_2024"
+      },
+      "fractions": {
+        "train": 0.7,
+        "val": 0.15,
+        "test": 0.15
+      },
+      "forced_tows": {
+        "2018/ST12": "train",
+        "2018/ST13": "train",
+        "2018/ST14": "train"
+      },
+      "n_restarts": 40,
+      "n_moves": 6000,
+      "min_tows_for_presence_penalty": 3,
+      "min_tows_per_split": {
+        "2018": {
+          "val": 5,
+          "test": 5
+        }
+      },
+      "inference_transect_windows": {
+        "20180505T0637Z": [
+          "2018-05-05T06:37:00",
+          "2018-05-05T08:15:00"
+        ],
+        "20180509T0018Z": [
+          "2018-05-09T00:18:00",
+          "2018-05-09T02:24:00"
+        ],
+        "20180509T0805Z": [
+          "2018-05-09T08:05:00",
+          "2018-05-09T10:08:00"
+        ],
+        "20180509T1938Z": [
+          "2018-05-09T19:38:00",
+          "2018-05-09T21:55:00"
+        ]
+      }
+    },
+    "export": {
+      "coco": true,
+      "clip_boxes": true,
+      "min_box_side_px": 2
+    },
+    "paths": {
+      "source_data": "<source_data>",
+      "annotated_data": "<annotated_data>",
+      "annotated_data_source": "<annotated_data_source>",
+      "project_dir": "<project_dir>",
+      "scratch_dir": "<scratch_dir>"
+    }
+  },
+  "inputs": {
+    "images": {
+      "path": "<annotated_data>/images",
+      "kind": "dir",
+      "mtime": 1728931228.0
+    },
+    "xml": {
+      "path": "<annotated_data>/xml",
+      "kind": "dir",
+      "mtime": 1729260314.0
+    },
+    "taxonomy": {
+      "path": "configs/taxonomy.yaml",
+      "kind": "file",
+      "size": 2054,
+      "mtime": 1790814087.0
+    }
+  },
+  "outputs": {
+    "zero_box_files_by_tow.csv": {
+      "sha256": "f1cc35430f9272b1cb251d87a174dba3ed385ac81142ac94080050de2ce3d531",
+      "size": 1054
+    },
+    "resolution_by_tow.csv": {
+      "sha256": "7498986955272a7a8d3cfa6b15eaca6b1fab87eef7436a4de7eff25281cb16b1",
+      "size": 2791
+    },
+    "taxonomy_mapping.csv": {
+      "sha256": "45427f04992300d3b4c1eb7e0b6d122f60fdd96230f5ed65f267fa9133a37f40",
+      "size": 1742
+    },
+    "class_counts_by_year.csv": {
+      "sha256": "d2eded0511c3c7bd42205155914301c3ee01d3855a0385adc8b4009fabb7ae9f",
+      "size": 538
+    },
+    "class_counts_by_tow_2018.csv": {
+      "sha256": "69b650b1965bdb51f573cfe2ea8b903444a75e79a905e9dbf1235506f918e32b",
+      "size": 830
+    },
+    "tows.csv": {
+      "sha256": "61540bd8b23c14c3ad6eb8918803bccf1ecfb1acf25b1ca5870f62b810770490",
+      "size": 5004
+    },
+    "splits.csv": {
+      "sha256": "d01869aa8ba282d8a7212773654a59b66c15cdad64469c976d379760c4eefbc8",
+      "size": 1944422
+    },
+    "class_counts_by_split.csv": {
+      "sha256": "d0070ef3951c3a629a7e89dfd3d219f92115ff3aac8098b623d3a7ae1d5c4539",
+      "size": 697
+    },
+    "coco/test.json": {
+      "sha256": "f5388678af7c9a8257cf9230720454d3b1e4548371fb1841754853a0eae42cd4",
+      "size": 718206
+    },
+    "coco/test_2024.json": {
+      "sha256": "f4849116715d9388f4584b22c71f90bd9ab4188fd3fa9b4b2be946c3bcec19d2",
+      "size": 65451
+    },
+    "coco/train.json": {
+      "sha256": "d848896d353b6690f0b3240d969e3022f76201507c2d8ece8b2ca65c1676b192",
+      "size": 3376002
+    },
+    "coco/val.json": {
+      "sha256": "0d99044b2bad20e1ee456379329a4ecf4c146f2b4bc5282aa177cf904d53202d",
+      "size": 666327
+    },
+    "summary.json": {
+      "sha256": "52ba91a7fa5e06dd2c7738a72f5e498b99ed1f6e889948d6c27a62013c18fd05",
+      "size": 1948
+    }
+  }
+}

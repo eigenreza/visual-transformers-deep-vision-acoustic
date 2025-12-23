@@ -1,0 +1,34 @@
+{
+  "pooled_threshold": 0.36,
+  "pooled_curve_best": {
+    "threshold": 0.36,
+    "tp": 1452.0,
+    "fp": 284.0,
+    "fn": 469.0,
+    "precision": 0.836405529953917,
+    "recall": 0.7558563248308173,
+    "f1": 0.7940935192780968
+  },
+  "label_classes": [
+    "krill",
+    "benthosema",
+    "bluewhiting",
+    "mackerel",
+    "herring"
+  ],
+  "per_class": {
+    "macro_f1_label_classes": 0.7968375278931719,
+    "n_label_classes_scored": 5,
+    "pooled_f1": 0.7947092863047671,
+    "pooled_precision": 0.8442622950819673,
+    "pooled_recall": 0.7506507027589797
+  },
+  "pooled": {
+    "macro_f1_label_classes": 0.7868783585313741,
+    "n_label_classes_scored": 5,
+    "pooled_f1": 0.7940935192780968,
+    "pooled_precision": 0.836405529953917,
+    "pooled_recall": 0.7558563248308173
+  },
+  "chosen": "per_class"
+}

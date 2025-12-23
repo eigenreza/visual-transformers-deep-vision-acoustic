@@ -1,0 +1,15 @@
+category_id,threshold,class_name
+1,0.59,maurolicus
+2,0.59,krill
+3,0.56,benthosema
+4,0.89,redfish
+5,0.83,bluewhiting
+6,0.72,gelatinous
+7,0.7,mackerel
+8,0.72,herring
+9,0.35,gonatus
+10,0.45,sergestes
+11,1.0,capelin
+12,0.36,pasiphaea
+13,0.53,barracudina
+14,0.63,unidentified

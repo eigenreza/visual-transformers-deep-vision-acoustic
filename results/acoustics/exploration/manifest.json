@@ -1,0 +1,114 @@
+{
+  "stage": "audit-transect-acoustics",
+  "created_utc": "2026-10-01T14:22:12+00:00",
+  "package_version": "0.1.0",
+  "hostname": "<host>",
+  "config_hash": "1f5fcd39c3f1b0d4",
+  "config": {
+    "stage": "acoustics",
+    "seed": 0,
+    "n_workers": 32,
+    "store": "S2018105_sv.zarr",
+    "draft_m": 8.5,
+    "floor_db": -130,
+    "reference_hz": 38000,
+    "transect_windows": {
+      "20180505T0637Z": [
+        "2018-05-05T06:07:00",
+        "2018-05-05T08:45:00"
+      ],
+      "20180509T0018Z": [
+        "2018-05-08T23:48:00",
+        "2018-05-09T02:54:00"
+      ],
+      "20180509T0805Z": [
+        "2018-05-09T07:35:00",
+        "2018-05-09T10:38:00"
+      ],
+      "20180509T1938Z": [
+        "2018-05-09T19:08:00",
+        "2018-05-09T22:25:00"
+      ]
+    },
+    "exploration": {
+      "coarse_time_step_s": 10,
+      "coarse_depth_step_m": 2,
+      "figure_frequencies_hz": [
+        38000,
+        200000
+      ]
+    },
+    "paths": {
+      "source_data": "<source_data>",
+      "annotated_data": "<annotated_data>",
+      "annotated_data_source": "<annotated_data_source>",
+      "project_dir": "<project_dir>",
+      "scratch_dir": "<scratch_dir>"
+    }
+  },
+  "inputs": {
+    "store": {
+      "path": "<source_data>/S2018105_sv.zarr",
+      "kind": "dir",
+      "mtime": 1699819248.98944
+    }
+  },
+  "outputs": {
+    "20180505T0637Z_bottom.parquet": {
+      "sha256": "5f71a9cb1e8d27cda061aa58f9cf3bc38fde614c5dc601c5ab4304150ae042a8",
+      "size": 160935
+    },
+    "20180505T0637Z_coarse.npz": {
+      "sha256": "4c3e2af6213a1ec98c3b290a951103d5f3daa15ecc7d5ea66053c44c3f26dc7d",
+      "size": 3909794
+    },
+    "20180505T0637Z_echogram.png": {
+      "sha256": "d3d387d34c4b9c87017391b3578fc759d29b770db0b236b47042b1899e1ce41d",
+      "size": 687379
+    },
+    "20180509T0018Z_bottom.parquet": {
+      "sha256": "ea05fc6dfb973ee65daf2879d745529f161f671badd8a147b782cc27ef902a6a",
+      "size": 176824
+    },
+    "20180509T0018Z_coarse.npz": {
+      "sha256": "6567b316490916494d7c4b7f375dc4bd78af3b6135f00c1c305805349742160e",
+      "size": 4556135
+    },
+    "20180509T0018Z_echogram.png": {
+      "sha256": "e6e0982b71c9de232a03e8f7e7784e5388ec35a54f3ffd381b8926f2704500a0",
+      "size": 600918
+    },
+    "20180509T0805Z_bottom.parquet": {
+      "sha256": "45a849968f450c6eccd3db18e875ad72bb88f115a9e6487be16e5b937048c26f",
+      "size": 145709
+    },
+    "20180509T0805Z_coarse.npz": {
+      "sha256": "3531b0f3aadc49c0b5d7c9d7e11b94cbe891e16c2833055a9c98193cdb50d534",
+      "size": 4533528
+    },
+    "20180509T0805Z_echogram.png": {
+      "sha256": "12ddb78ecf3f7a5e6b8d6051063f65358227d2b93d7398d127ef3f0ca0e62d94",
+      "size": 637618
+    },
+    "20180509T1938Z_bottom.parquet": {
+      "sha256": "41ae1d94fddc1a60f3845c1bf307f77a1707136ef6f7812d60f74378130667fc",
+      "size": 184650
+    },
+    "20180509T1938Z_coarse.npz": {
+      "sha256": "5786b2098584b673c4571c4b9234f08be92a14336aa932f89582b697a6bae30e",
+      "size": 5087666
+    },
+    "20180509T1938Z_echogram.png": {
+      "sha256": "9d6af0cf70fcac1a7c21f6511b064f13c8ee73d15dab101bba72939bb8ebb8b3",
+      "size": 701365
+    },
+    "range_profiles.csv": {
+      "sha256": "b4ccaf320043313adcd1411d0afa49d1c28bcb23a5eaeb65557e7b4155f197ff",
+      "size": 6606799
+    },
+    "summary.json": {
+      "sha256": "602b9e29ecfd9106f5fcf00a82da35adca70dfeb2ce71252e30e2da3d8e070f3",
+      "size": 3564
+    }
+  }
+}

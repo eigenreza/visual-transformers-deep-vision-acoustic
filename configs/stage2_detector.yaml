@@ -1,0 +1,182 @@
+# Stage 2: detector training on the annotation dataset.
+stage: detector
+seed: 0
+# JPEG and PNG decoding of the large frames bounds training throughput.
+n_workers: 24
+
+dataset:
+  # COCO files written by Stage 1, relative to project_dir.
+  coco_dir: runs/dataset/coco
+  images_subdir: images
+  # Fourteen classes with identifiers 1 to 14; identifier 0 is unused so that
+  # the frameworks, which index class outputs by identifier, need no remapping.
+  num_classes: 15
+
+# External frameworks, cloned under <project_dir>/external at the commits
+# named here. Pretrained checkpoints live under <scratch_dir>.
+frameworks:
+  rtdetrv2:
+    repo: RT-DETR/rtdetrv2_pytorch
+    url: https://github.com/lyuwenyu/RT-DETR
+    commit: 29320b6fd828f8e0987a71426cf2d961b09dfed7
+    licence: Apache-2.0
+    base_configs:
+      l: configs/rtdetrv2/rtdetrv2_r50vd_6x_coco.yml
+      x: configs/rtdetrv2/rtdetrv2_r101vd_6x_coco.yml
+    pretrained:
+      l: pretrained/rtdetrv2_r50vd_2x_coco_objects365_from_paddle.pth
+      x: pretrained/rtdetrv2_r101vd_2x_coco_objects365_from_paddle.pth
+  dfine:
+    repo: D-FINE
+    url: https://github.com/Peterande/D-FINE
+    commit: 956d1709314c2c6a4df6f34de232054578a7449f
+    licence: Apache-2.0
+    base_configs:
+      l: configs/dfine/custom/dfine_hgnetv2_l_custom.yml
+      x: configs/dfine/custom/dfine_hgnetv2_x_custom.yml
+    pretrained:
+      l: pretrained/dfine_l_obj2coco_e25.pth
+      x: pretrained/dfine_x_obj2coco.pth
+  retinanet:
+    # torchvision RetinaNet ResNet-50 FPN v2, COCO weights downloaded by torchvision.
+    licence: BSD-3-Clause
+    pretrained: torchvision
+
+defaults:
+  # Fine-tuning from COCO and Objects365 weights on a few thousand images
+  # converges within tens of epochs; the strong augmentations are switched
+  # off for the last six epochs as in the frameworks' own recipes.
+  epochs: 40
+  batch_size: 16
+  lr: 0.0001
+  backbone_lr: 0.00001
+  weight_decay: 0.0001
+  warmup_iterations: 500
+  checkpoint_freq: 10
+  stop_augmentation_epochs_before_end: 6
+  augmentation:
+    photometric_p: 0.5
+    iou_crop_p: 0.5
+    zoom_out: false
+    hflip: true
+    multiscale: true
+
+experiments:
+  dfine_l_640: {framework: dfine, size: l, input_size: 640}
+  dfine_l_1024: {framework: dfine, size: l, input_size: 1024, batch_size: 8}
+  dfine_l_800: {framework: dfine, size: l, input_size: 800, batch_size: 12}
+  rtdetrv2_l_640: {framework: rtdetrv2, size: l, input_size: 640}
+  rtdetrv2_l_1024: {framework: rtdetrv2, size: l, input_size: 1024, batch_size: 8}
+  dfine_x_640: {framework: dfine, size: x, input_size: 640}
+  dfine_x_1024: {framework: dfine, size: x, input_size: 1024, batch_size: 8}
+  retinanet_640: {framework: retinanet, size: r50, input_size: 640}
+  retinanet_1024: {framework: retinanet, size: r50, input_size: 1024, batch_size: 8}
+  # Short runs used to check the pipeline end to end.
+  smoke_dfine_l_640: {framework: dfine, size: l, input_size: 640, epochs: 1, batch_size: 8, checkpoint_freq: 1}
+  smoke_retinanet_640: {framework: retinanet, size: r50, input_size: 640, epochs: 1, batch_size: 8}
+
+evaluation:
+  iou_threshold: 0.5
+  score_threshold: 0.001
+  n_boot: 200
+  # Classes enter a macro mean only with at least this many ground truth boxes in the slice.
+  min_gt_for_macro: 10
+  # Additional macro means over named subsets of classes; the label classes
+  # are the ones that occur in the 2018 material used for label generation.
+  class_sets:
+    label_classes: [krill, benthosema, bluewhiting, mackerel, herring]
+  batch_size: 16
+
+# Tables across experiments and seeds; pairs listed under compare get paired
+# bootstrap differences (second minus first) on the shared evaluation images.
+summary:
+  compare:
+    - [dfine_l_640, dfine_l_1024]
+    - [dfine_l_1024, rtdetrv2_l_1024]
+    - [dfine_l_1024, retinanet_1024]
+  # What the boxes of one class in one slice are predicted as, per run.
+  # Both object rules (per-class and pooled thresholds) reported on these slices.
+  object_rule_slices:
+    - {split: val, slice: "2018"}
+    - {split: test, slice: "2018"}
+    - {split: test, slice: "2020-2023"}
+    - {split: val, slice: all}
+    - {split: test, slice: all}
+  # Cross-class resolution on the annotated splits: counts per class before and
+  # after resolution against the boxes, and which classes suppress which.
+  resolution_checks:
+    - {split: val, slice: "2018"}
+    - {split: test, slice: "2018"}
+    - {split: val, slice: all}
+  confusion_checks:
+    - {class: herring, split: test, slice: "2020-2023"}
+    - {class: herring, split: val, slice: "2018"}
+    - {class: herring, split: test, slice: "2018"}
+    - {class: krill, split: test, slice: "2020-2023"}
+    - {class: krill, split: test_2024, slice: "2024"}
+
+calibration:
+  # Maps fitted on validation detections labelled by matching at the
+  # evaluation IoU; each is also fitted on the focus year alone when that
+  # slice has enough detections, and both are compared per slice.
+  methods: [temperature, platt, isotonic]
+  method: platt
+  # "all" fits on the whole validation split, "focus" on the focus year only.
+  fit_on: all
+  focus_year: "2018"
+  min_focus_detections: 200
+  n_bins: 15
+  # Detections below this raw score are excluded from the operating-regime slices.
+  score_floor: 0.05
+  # Folds by tow for the cross-fitted comparison of the maps.
+  n_folds: 2
+
+# Stage 3: inference on whole camera transects with a trained experiment.
+inference:
+  transects: [20180505T0637Z, 20180509T0018Z, 20180509T0805Z, 20180509T1938Z]
+  cameras: [Left]
+  # Detections below this raw score are not stored; thresholds are applied later.
+  score_floor: 0.05
+  # Raw-score thresholds at which per-frame counts are tabulated.
+  count_thresholds: [0.05, 0.1, 0.2, 0.3, 0.5]
+  # Overlapping detections of different classes above this IoU keep only the
+  # highest calibrated score in the resolved counts.
+  resolution_iou: 0.7
+  # Boxes that recur at the same position and size (16 pixel cells) in at
+  # least this share of a folder's frames are fixed structure (housing,
+  # warp); detections overlapping them at this IoU are not counted.
+  static: {cell_px: 16, min_folder_share: 0.2, iou: 0.5}
+  batch_size: 16
+  # Fixed random sample of detected frames per band of calibrated confidence,
+  # saved as contact sheets for manual review of the label quality.
+  review:
+    per_sheet: 10
+    seed: 0
+    sets:
+      - {class_name: krill, bands: [[0.05, 0.3], [0.3, 0.6], [0.6, 1.01]], n_per_band: 50}
+      # Missed krill are mostly predicted as maurolicus, a class without 2018
+      # annotations; these frames let a reader judge whether they are krill.
+      - {class_name: maurolicus, bands: [[0.3, 1.01]], n_per_band: 50}
+
+# Stage 4: camera time and depth series at a base resolution.
+camera_series:
+  interval_s: 10
+  # Diagnostics of the depth cleaning: length of the plotted excerpt and the
+  # residual beyond which a reading counts as far from the trend.
+  audit:
+    excerpt_minutes: 20
+    far_threshold_m: 5
+  # The depth sensor updates every 0.65 s with a scatter of about 10 m
+  # (interquartile) around the tow trajectory. A 60 s median gives the
+  # physical trend used for the speed bound and the rejection band; a 30 s
+  # median of the consistent readings is the cleaned depth.
+  trend_window_s: 30
+  smooth_window_s: 30
+  # Vertical speed bound: this quantile of the trend speed over 1 s steps.
+  speed_quantile: 0.95
+  # Readings farther from the trend than this many robust scales plus the
+  # distance covered at the speed bound in half a trend window are rejected.
+  outlier_mads: 3.0
+  # Gaps in the cleaned depth longer than this are not interpolated.
+  max_gap_s: 10
+  join_tolerance_ms: 50

@@ -1,0 +1,55 @@
+# Example of a run specification for the acoustic model framework. A run trains one
+# experiment on one fold of a split protocol with one seed and writes its predictions for
+# the validation and test windows. Every experiment inherits the defaults and overrides the
+# keys that it names.
+stage: models
+seed: 0
+# Detector run whose windows, targets and splits are used.
+windows_run: {experiment: rtdetrv2_l_1024, seed: 0}
+# Folds of the protocol and seeds that are run for every experiment.
+folds: [test_20180505T0637Z]
+seeds: [0]
+
+defaults:
+  # Window geometry and split protocol, as written by build-windows and make-splits.
+  geometry: base
+  protocol: loto_unflagged
+  # Count distribution of the output head: poisson, nb, zinb, tweedie or log1p.
+  family: nb
+  inputs:
+    frequencies_hz: [18000, 38000, 70000, 120000, 200000, 333000]
+    # Channel pairs whose difference in dB is added as an input channel.
+    differences: [[120000, 38000]]
+    include_valid: true
+    include_depth: true
+    fill_db: -100
+  targets:
+    # Count form of the camera series: hard, weighted or expected.
+    form: hard
+    classes: [krill, benthosema, bluewhiting, mackerel, herring]
+    # How the lag distribution enters the targets: expected, at_lag or sample.
+    lag_offsets: expected
+  sampler: uniform
+  train:
+    epochs: 40
+    batch_size: 64
+    lr: 0.0003
+    weight_decay: 0.05
+    warmup_steps: 100
+    clip: 1.0
+    patience: 10
+    amp: true
+  net: {}
+
+experiments:
+  # A small convolutional network on the defaults.
+  cnn: {network: cnn}
+
+# Settings of evaluate-acoustic: samples per predictive distribution, level of the
+# predictive intervals, bootstrap resamples and the length of the resampled time blocks.
+evaluation:
+  n_samples: 400
+  interval_alpha: 0.1
+  n_boot: 500
+  block_s: 300
+  reference: cnn

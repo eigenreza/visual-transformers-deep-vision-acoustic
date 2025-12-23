@@ -1,0 +1,11 @@
+# Machine-specific locations on the compute server. Copy this file to
+# configs/paths/server.yaml, which is not tracked, and write the locations there, or keep
+# the variables and export them: a value of the form ${NAME} is read from the environment.
+# The two data roots are read-only.
+source_data: ${ECHOLABEL_SOURCE_DATA}
+annotated_data: ${ECHOLABEL_ANNOTATED_DATA}
+# Original collection that the annotation copy was assembled from. It is used only to
+# reconcile file lists and may be left unset.
+annotated_data_source: ${ECHOLABEL_ANNOTATED_DATA_SOURCE}
+project_dir: ${ECHOLABEL_PROJECT_DIR}
+scratch_dir: ${ECHOLABEL_SCRATCH_DIR}

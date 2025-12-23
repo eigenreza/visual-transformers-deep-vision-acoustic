@@ -1,0 +1,62 @@
+{
+  "experiment": "rtdetrv2_l_1024",
+  "seed": 1,
+  "split": "test_2024",
+  "coco": {
+    "map": 0.32765346743973317,
+    "map50": 0.5751815766274779,
+    "map75": 0.32467173167690544,
+    "map_small": 0.3321829629767477,
+    "map_medium": 0.32549917864331745,
+    "map_large": 0.3398416879580319
+  },
+  "n_gt": {
+    "maurolicus": 0,
+    "krill": 142,
+    "benthosema": 0,
+    "redfish": 0,
+    "bluewhiting": 286,
+    "gelatinous": 0,
+    "mackerel": 0,
+    "herring": 0,
+    "gonatus": 0,
+    "sergestes": 0,
+    "capelin": 1,
+    "pasiphaea": 0,
+    "barracudina": 18,
+    "unidentified": 0
+  },
+  "n_images": 130,
+  "n_predictions": 39000,
+  "thresholds_source": "val",
+  "map50_by_slice": {
+    "all": {
+      "value": 0.7532638515302482,
+      "ci_low": 0.6783781580713492,
+      "ci_high": 0.83481065322016,
+      "n_images": 130
+    },
+    "2024": {
+      "value": 0.7532638515302482,
+      "ci_low": 0.6814449571083695,
+      "ci_high": 0.8298206682034752,
+      "n_images": 130
+    }
+  },
+  "class_set_map50_by_slice": {
+    "map50_label_classes@all": {
+      "value": 0.8278483645397556,
+      "ci_low": 0.7803816971392348,
+      "ci_high": 0.8715969712011256,
+      "n_images": 130,
+      "n_classes": 2
+    },
+    "map50_label_classes@2024": {
+      "value": 0.8278483645397556,
+      "ci_low": 0.7827048122451445,
+      "ci_high": 0.8715402791952587,
+      "n_images": 130,
+      "n_classes": 2
+    }
+  }
+}

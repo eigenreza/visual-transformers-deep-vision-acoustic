@@ -1,0 +1,136 @@
+{
+  "stage": "audit-zarr",
+  "created_utc": "2026-09-30T23:53:04+00:00",
+  "package_version": "0.1.0",
+  "hostname": "<host>",
+  "config_hash": "39894520156227cf",
+  "config": {
+    "stage": "audit",
+    "seed": 0,
+    "n_workers": 32,
+    "zarr": {
+      "store": "S2018105_sv.zarr",
+      "floors_db": [
+        -100,
+        -90,
+        -80
+      ],
+      "histogram_range_db": [
+        -130,
+        0
+      ],
+      "histogram_bin_db": 1.0,
+      "gap_thresholds_s": [
+        5,
+        10,
+        60,
+        600
+      ],
+      "transect_windows": {
+        "20180505T0637Z": [
+          "2018-05-05T06:00:00",
+          "2018-05-05T09:00:00"
+        ],
+        "20180509T0018Z": [
+          "2018-05-08T23:45:00",
+          "2018-05-09T03:00:00"
+        ],
+        "20180509T0805Z": [
+          "2018-05-09T07:30:00",
+          "2018-05-09T10:45:00"
+        ],
+        "20180509T1938Z": [
+          "2018-05-09T19:00:00",
+          "2018-05-09T22:30:00"
+        ]
+      }
+    },
+    "annotations": {
+      "image_extensions": [
+        ".jpg",
+        ".jpeg",
+        ".png"
+      ],
+      "reconcile_with_source": true
+    },
+    "transects": {
+      "ids_2018": [
+        "20180505T0637Z",
+        "20180509T0018Z",
+        "20180509T0805Z",
+        "20180509T1938Z"
+      ],
+      "ids_2024": [
+        "20241108T1550Z",
+        "20241109T0155Z"
+      ],
+      "cameras": [
+        "Left",
+        "Right"
+      ],
+      "metadata_file": "deepvision.xml",
+      "join_tolerance_ms": 50,
+      "gap_thresholds_s": [
+        1,
+        5,
+        60
+      ],
+      "depth_valid_range_m": [
+        0.5,
+        1500
+      ]
+    },
+    "paths": {
+      "source_data": "<source_data>",
+      "annotated_data": "<annotated_data>",
+      "annotated_data_source": "<annotated_data_source>",
+      "project_dir": "<project_dir>",
+      "scratch_dir": "<scratch_dir>"
+    }
+  },
+  "inputs": {
+    "store": {
+      "path": "<source_data>/S2018105_sv.zarr",
+      "kind": "dir",
+      "mtime": 1699819248.98944
+    }
+  },
+  "outputs": {
+    "channel_frequency.csv": {
+      "sha256": "bc5cfc52ce35a33693875d7421b8b4aada28d10915b4f1af289fb2411b921f52",
+      "size": 325
+    },
+    "ping_gaps.csv": {
+      "sha256": "5153f493059ba702e0df78475f707e9429aa124335528e3809fc6cdf3456814f",
+      "size": 10877
+    },
+    "transect_coverage.csv": {
+      "sha256": "a361773214f7953e7450ca6dee085d800d48cbd5447fa257435e9995fe13e5db",
+      "size": 668
+    },
+    "transducer_draft.csv": {
+      "sha256": "4cf4a04cf0fb46e9fa51dabedbe1c0b7ff3ad83a1030952fe2ce5e4181481952",
+      "size": 290
+    },
+    "sv_per_frequency.csv": {
+      "sha256": "3bbcc881644996107ff8d94a958205ae28c12177636ba195a2e12846861c7bf4",
+      "size": 1264
+    },
+    "sv_by_range.csv": {
+      "sha256": "3bfdcc9888ef79c719193a7eb4c8fd3d6e363c2fac4fac28940cf7b6385f452a",
+      "size": 930281
+    },
+    "sv_db_histogram.csv": {
+      "sha256": "278f0adba152f57805a644a378b264a15da28fcf8683d72f0aa883bfe1e19947",
+      "size": 7877
+    },
+    "sv_per_ping.parquet": {
+      "sha256": "4926641d74c660694c229b74c39b5a0ff9fbe861ae29ff97dbcc25dd7f5cc319",
+      "size": 66156734
+    },
+    "summary.json": {
+      "sha256": "85a7832f73667b5a9fa2b4e8a386f4b3fabf5bc2c5cd720d9f1213f3c5e1debc",
+      "size": 9214
+    }
+  }
+}

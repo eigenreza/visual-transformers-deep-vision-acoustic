@@ -1,0 +1,106 @@
+{
+  "taxonomy": {
+    "classes": [
+      "maurolicus",
+      "krill",
+      "benthosema",
+      "redfish",
+      "bluewhiting",
+      "gelatinous",
+      "mackerel",
+      "herring",
+      "gonatus",
+      "sergestes",
+      "capelin",
+      "pasiphaea",
+      "barracudina",
+      "unidentified"
+    ],
+    "n_raw_labels_mapped": 42
+  },
+  "n_paired_files": 8524,
+  "n_dropped_without_size": 0,
+  "n_excluded_unannotated_images": 0,
+  "unannotated_dirs": [],
+  "unannotated_tows": [],
+  "n_images": 8524,
+  "n_negatives": 429,
+  "n_boxes": 32674,
+  "n_tows": 66,
+  "tows_per_split": {
+    "train": 33,
+    "val": 17,
+    "test": 15,
+    "test_2024": 1
+  },
+  "images_per_split": {
+    "train": 5644,
+    "val": 1510,
+    "test": 1240,
+    "test_2024": 130
+  },
+  "boxes_per_split": {
+    "train": 23027,
+    "test": 4984,
+    "val": 4216,
+    "test_2024": 447
+  },
+  "frames_in_inference_transects": [
+    {
+      "inference_transect": "20180509T0018Z",
+      "tow": "2018/ST12",
+      "split": "train",
+      "n": 8
+    },
+    {
+      "inference_transect": "20180509T0805Z",
+      "tow": "2018/ST13",
+      "split": "train",
+      "n": 12
+    },
+    {
+      "inference_transect": "20180509T1938Z",
+      "tow": "2018/ST14",
+      "split": "train",
+      "n": 3
+    }
+  ],
+  "holdout": {
+    "years": {
+      "2024": "test_2024"
+    },
+    "tows": [
+      "2024/20240302T1608Z"
+    ],
+    "n_images": 130,
+    "n_boxes": 447,
+    "n_images_readable": 130
+  },
+  "coco": {
+    "test": {
+      "images": 1240,
+      "annotations": 4984,
+      "clipped": 0,
+      "dropped": 0
+    },
+    "test_2024": {
+      "images": 130,
+      "annotations": 447,
+      "clipped": 0,
+      "dropped": 0
+    },
+    "train": {
+      "images": 5644,
+      "annotations": 23027,
+      "clipped": 0,
+      "dropped": 0
+    },
+    "val": {
+      "images": 1510,
+      "annotations": 4216,
+      "clipped": 0,
+      "dropped": 0
+    }
+  },
+  "split_rule_violations": []
+}

@@ -1,0 +1,76 @@
+# Stage 7: acoustic window dataset and leakage-free splits.
+stage: windows
+seed: 0
+# Base resolution of the camera series and of the alignment mapping.
+interval_s: 10
+transects: [20180505T0637Z, 20180509T0018Z, 20180509T0805Z, 20180509T1938Z]
+
+windows:
+  # Cell size of every patch: one ping is about 1.1 s and one range sample 0.2 m;
+  # 2 s by 1 m matches the physical range resolution (0.77 m pulse) and the
+  # whole-cruise product used for pretraining (one ping by 1 m).
+  time_step_s: 2.0
+  depth_step_m: 1.0
+  # Channel whose surface exclusion anchors the surface-anchored band and whose
+  # flags decide whether a window is unflagged.
+  primary_frequency_hz: 38000
+  # Geometries built from the same mapping. ``anchor`` is ``camera`` (band
+  # centred on the mean camera depth of the window) or ``surface`` (band top
+  # never above the surface exclusion depth, so shallow windows keep the same
+  # number of usable cells as deep ones). ``context`` adds a coarse full-column
+  # patch next to the local band.
+  geometries:
+    base: {length_s: 60, height_m: 50, stride_s: 20, anchor: camera}
+    context3: {length_s: 180, height_m: 50, stride_s: 30, anchor: camera}
+    context5: {length_s: 300, height_m: 50, stride_s: 30, anchor: camera}
+    tall: {length_s: 60, height_m: 100, stride_s: 20, anchor: camera}
+    surface: {length_s: 60, height_m: 50, stride_s: 20, anchor: surface}
+    twoscale: {length_s: 60, height_m: 50, stride_s: 20, anchor: camera, context: {depth_step_m: 5.0, time_step_s: 10.0, depth_max_m: 500}}
+    # Acoustic span that covers the whole support of the lag: the targets are the
+    # counts of one camera minute and are not shifted, because every candidate
+    # vessel time lies inside the window.
+    span12: {length_s: 720, height_m: 50, stride_s: 30, anchor: camera, target_span_s: 60}
+    # Three and five minutes of acoustic context around the vessel time with the
+    # targets of the central camera minute under the lag distribution.
+    context3_minute: {length_s: 180, height_m: 50, stride_s: 30, anchor: camera, target_span_s: 60, target_lag: distribution}
+    context5_minute: {length_s: 300, height_m: 50, stride_s: 30, anchor: camera, target_span_s: 60, target_lag: distribution}
+  # A window is dropped when fewer than this share of its pings or camera frames are present.
+  min_ping_fraction: 0.8
+  min_frame_fraction: 0.5
+
+targets:
+  # Count forms taken from the camera series per class.
+  forms: {hard: _res, weighted: _weighted, expected: _exp}
+  # Classes excluded from the targets but kept as diagnostics.
+  exclude: [unidentified]
+  merged: {herring_bluewhiting: [herring, bluewhiting]}
+  # Per-frame forms from the frame table of the inference stage, on the resolved
+  # counts: mean and median count per frame of the span, the share of its frames
+  # with at least one object of the class, and the number of such frames.
+  frame_forms: [framemean, framemedian, occupancy, occupied]
+  frame_suffix: _res
+  # Lag uncertainty, from the mapping's lag distribution: under a normal
+  # distribution targets are stored at these multiples of the lag standard
+  # deviation around the centre, with normal weights for the expectation; under
+  # a uniform distribution at this many equally spaced points of the support,
+  # with equal weights and the exact average as the expectation.
+  lag_offsets_sd: [-2, -1, 0, 1, 2]
+  n_uniform_offsets: 9
+
+splits:
+  # Buffer on both sides of every split boundary: window length plus the lag
+  # uncertainty of the targets (this many standard deviations under a normal lag
+  # distribution, the full support under a uniform one, nothing for fixed targets).
+  lag_sd_multiple: 2
+  # Leave-one-transect-out: validation is the last share of the span of the
+  # windows of each training transect (for unflagged windows this ends before
+  # the surface phase); a window length plus a buffer is lost at the boundary,
+  # so geometries whose buffer exceeds long_buffer_s get the larger share.
+  loto_val_fraction: 0.3
+  loto_val_fraction_long: 0.4
+  long_buffer_s: 600
+  loto_val_position: end
+  # Within-transect protocol: contiguous blocks assigned in this repeating pattern;
+  # a geometry whose buffer exceeds half a block is not split within transects.
+  block_s: 1200
+  block_pattern: [train, val, train, test, train, train]

@@ -1,0 +1,93 @@
+__include__:
+- <project_dir>/external/D-FINE/configs/dfine/custom/dfine_hgnetv2_l_custom.yml
+output_dir: <scratch_dir>/runs/detector/dfine_l_640/seed0/framework
+num_classes: 15
+remap_mscoco_category: false
+eval_spatial_size:
+- 640
+- 640
+train_dataloader:
+  dataset:
+    img_folder: <annotated_data>/images
+    ann_file: <project_dir>/runs/dataset/coco/train.json
+    transforms:
+      ops:
+      - type: RandomPhotometricDistort
+        p: 0.5
+      - type: RandomIoUCrop
+        p: 0.5
+      - type: SanitizeBoundingBoxes
+        min_size: 1
+      - type: RandomHorizontalFlip
+      - type: Resize
+        size:
+        - 640
+        - 640
+      - type: SanitizeBoundingBoxes
+        min_size: 1
+      - type: ConvertPILImage
+        dtype: float32
+        scale: true
+      - type: ConvertBoxes
+        fmt: cxcywh
+        normalize: true
+      policy:
+        name: stop_epoch
+        epoch: 34
+        ops:
+        - RandomPhotometricDistort
+        - RandomIoUCrop
+  collate_fn:
+    type: BatchImageCollateFunction
+    stop_epoch: 34
+    base_size: 640
+    base_size_repeat: 3
+    ema_restart_decay: 0.9999
+  total_batch_size: 16
+  num_workers: 24
+  shuffle: true
+  drop_last: true
+val_dataloader:
+  dataset:
+    img_folder: <annotated_data>/images
+    ann_file: <project_dir>/runs/dataset/coco/val.json
+    transforms:
+      ops:
+      - type: Resize
+        size:
+        - 640
+        - 640
+      - type: ConvertPILImage
+        dtype: float32
+        scale: true
+  total_batch_size: 16
+  num_workers: 24
+  shuffle: false
+  drop_last: false
+epochs: 40
+checkpoint_freq: 10
+print_freq: 50
+use_amp: true
+use_ema: true
+optimizer:
+  type: AdamW
+  params:
+  - params: ^(?=.*backbone)(?!.*norm|bn).*$
+    lr: 1.0e-05
+  - params: ^(?=.*(?:encoder|decoder))(?=.*(?:norm|bn)).*$
+    weight_decay: 0.0
+  lr: 0.0001
+  betas:
+  - 0.9
+  - 0.999
+  weight_decay: 0.0001
+lr_scheduler:
+  type: MultiStepLR
+  milestones:
+  - 1000000
+  gamma: 0.1
+lr_warmup_scheduler:
+  type: LinearWarmup
+  warmup_duration: 500
+HGNetv2:
+  pretrained: false

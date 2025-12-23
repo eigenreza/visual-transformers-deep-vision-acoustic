@@ -1,0 +1,72 @@
+# Stage 6: lag between the towed camera and the echosounder, with uncertainty.
+stage: alignment
+seed: 0
+# Base resolution of the camera series (must match the camera series stage).
+interval_s: 10
+
+alignment:
+  # Channels whose backscatter at the camera depth is correlated with the camera signals.
+  frequencies_hz: [38000, 70000, 120000, 200000]
+  primary_frequency_hz: 38000
+  # Half width of the depth band around the camera depth (metres).
+  band_half_width_m: 5
+  # Intervals whose camera depth lies inside the surface exclusion of the
+  # channel, or whose band has fewer usable cells than this fraction, do not
+  # enter the correlation; they are flagged in the mapping.
+  min_band_usable_fraction: 0.5
+  # Lag grid in seconds (camera after vessel), in steps of one interval; the
+  # echogram is read from lag_max_s before the first camera interval so that
+  # every interval has a partner at every lag.
+  lag_min_s: 0
+  lag_max_s: 1500
+  # Lag distribution written to the mapping: ``plateau_event`` (centre and
+  # spread from the plateau and event tests, normal, with the physical range
+  # as support), ``prior`` (uniform over the per-interval physical range) or
+  # ``series`` (prior-restricted peak of the whole-series cross-correlation).
+  lag_model: plateau_event
+  min_lag_sd_s: 60
+  # Plateau test: runs of stable camera depth, detrended on both sides so that
+  # only along-track variation remains, correlated over the lag grid with a
+  # block bootstrap of the peak inside the prior.
+  # n_null block permutations of the camera series calibrate the maximum of the lag search.
+  plateau: {min_minutes: 10, span_m: 10, span_m_fallback: 20, detrend_s: 180, block_intervals: 12, n_boot: 100, n_null: 200}
+  # Event test: the largest detection bursts inside plateaus; the strongest
+  # patch at the burst depth within the prior window implies a lag.
+  events: {n_per_transect: 5, min_separation_s: 300, signal_column: krill_res, smooth_intervals: 3}
+  # Both series are smoothed with a centred mean over this many intervals before ranking.
+  smooth_intervals: 3
+  method: spearman
+  # Moving block bootstrap over blocks of this many intervals.
+  block_intervals: 30
+  n_boot: 500
+  # Piecewise lag: segment length in intervals and the minimum number of pairs per segment.
+  segment_intervals: 120
+  min_pairs: 40
+  # A varying lag replaces the constant one only when the held-out gain in
+  # correlation exceeds this value.
+  varying_lag_gain_threshold: 0.02
+  speed_window_s: 60
+  # The horizontal distance between vessel and camera is not recorded. The
+  # prior assumes a straight warp of this length range and the median camera
+  # depth; the empirical estimate is reported against it.
+  warp_length_m: [500, 1500]
+  # Camera signals as sums of series columns (shell-style patterns).
+  signals:
+    all_weighted: ["*_weighted"]
+    fish_weighted:
+      - herring_weighted
+      - mackerel_weighted
+      - bluewhiting_weighted
+      - benthosema_weighted
+      - maurolicus_weighted
+      - redfish_weighted
+      - capelin_weighted
+      - barracudina_weighted
+    krill_weighted: ["krill_weighted"]
+    detections_op: ["n_op"]
+  exclude_columns: ["unidentified_weighted"]
+  primary_signal: all_weighted
+  # Camera depth series for which the lag is computed: the cleaned series, and
+  # the raw median and raw mean per interval on the primary signal and channel.
+  depth_columns: {cleaned: depth_median, raw_median: depth_raw_median, raw_mean: depth_raw_mean}
+  primary_depth: cleaned

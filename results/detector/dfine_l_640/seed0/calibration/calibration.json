@@ -1,0 +1,66 @@
+{
+  "experiment": "dfine_l_640",
+  "seed": 0,
+  "n_detections": 453000,
+  "n_true_positives": 4046,
+  "focus_year": "2018",
+  "n_focus_detections": 8400,
+  "chosen": "platt_all",
+  "calibrator": {
+    "method": "platt",
+    "params": {
+      "slope": 1.9062676223253514,
+      "intercept": -1.2207980754533194
+    }
+  },
+  "ece_all": {
+    "identity": 0.02715410073387702,
+    "temperature_all": 0.0026387525795561442,
+    "temperature_2018": 0.0032224782511623613,
+    "platt_all": 0.000277830824602122,
+    "platt_2018": 0.0024363703026608354,
+    "isotonic_all": 1.2210511284112005e-10
+  },
+  "ece_2018": {
+    "identity": 0.03429075241088868,
+    "temperature_all": 0.0057475841504521855,
+    "temperature_2018": 0.00651005285009763,
+    "platt_all": 0.0027374210619182547,
+    "platt_2018": 0.0013241842728694184,
+    "isotonic_all": 0.0031340315383405534
+  },
+  "nll_all": {
+    "identity": 0.03490529410303796,
+    "temperature_all": 0.011863918384335717,
+    "temperature_2018": 0.011998199380194785,
+    "platt_all": 0.01018484570151366,
+    "platt_2018": 0.011788143027721147,
+    "isotonic_all": 0.010034853242345348
+  },
+  "nll_2018": {
+    "identity": 0.04417232490435921,
+    "temperature_all": 0.019904318784046,
+    "temperature_2018": 0.019715525834198465,
+    "platt_all": 0.014315100048436233,
+    "platt_2018": 0.01262972690184912,
+    "isotonic_all": 0.014203511577922916
+  },
+  "cross_fitted_ece_all_above_0.05": {
+    "temperature": 0.019368354740731807,
+    "platt": 0.0037032986998327766,
+    "isotonic": 0.005205321622149274,
+    "identity": 0.09401626899690282
+  },
+  "cross_fitted_ece_2018_above_0.05": {
+    "temperature": 0.03368242819414867,
+    "platt": 0.01741899935101101,
+    "isotonic": 0.017738734591919134,
+    "identity": 0.10570460401261664
+  },
+  "cross_fitted_nll_all_above_0.05": {
+    "temperature": 0.08477100630760676,
+    "platt": 0.07241307755982311,
+    "isotonic": 0.0741332006265299,
+    "identity": 0.149215585607926
+  }
+}

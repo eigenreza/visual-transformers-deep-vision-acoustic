@@ -1,0 +1,4 @@
+top,second,ext,identical_copy_exists,n,total_mb
+images,images,.jpg,True,5048,2670.327803
+images,images,.png,True,1782,6676.146102
+xml,xml,.xml,True,3632,3.230222

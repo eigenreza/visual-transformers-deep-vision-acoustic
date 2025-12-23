@@ -1,0 +1,425 @@
+{
+  "stage": "review-detections",
+  "created_utc": "2026-10-02T18:37:38+00:00",
+  "package_version": "0.1.0",
+  "hostname": "<host>",
+  "config_hash": "32e717ff4cd93c1b",
+  "config": {
+    "stage": "detector",
+    "seed": 0,
+    "n_workers": 24,
+    "dataset": {
+      "coco_dir": "runs/dataset/coco",
+      "images_subdir": "images",
+      "num_classes": 15
+    },
+    "frameworks": {
+      "rtdetrv2": {
+        "repo": "RT-DETR/rtdetrv2_pytorch",
+        "licence": "Apache-2.0",
+        "base_configs": {
+          "l": "configs/rtdetrv2/rtdetrv2_r50vd_6x_coco.yml",
+          "x": "configs/rtdetrv2/rtdetrv2_r101vd_6x_coco.yml"
+        },
+        "pretrained": {
+          "l": "pretrained/rtdetrv2_r50vd_2x_coco_objects365_from_paddle.pth",
+          "x": "pretrained/rtdetrv2_r101vd_2x_coco_objects365_from_paddle.pth"
+        }
+      },
+      "dfine": {
+        "repo": "D-FINE",
+        "licence": "Apache-2.0",
+        "base_configs": {
+          "l": "configs/dfine/custom/dfine_hgnetv2_l_custom.yml",
+          "x": "configs/dfine/custom/dfine_hgnetv2_x_custom.yml"
+        },
+        "pretrained": {
+          "l": "pretrained/dfine_l_obj2coco_e25.pth",
+          "x": "pretrained/dfine_x_obj2coco.pth"
+        }
+      },
+      "retinanet": {
+        "licence": "BSD-3-Clause",
+        "pretrained": "torchvision"
+      }
+    },
+    "defaults": {
+      "epochs": 40,
+      "batch_size": 16,
+      "lr": 0.0001,
+      "backbone_lr": 1e-05,
+      "weight_decay": 0.0001,
+      "warmup_iterations": 500,
+      "checkpoint_freq": 10,
+      "stop_augmentation_epochs_before_end": 6,
+      "augmentation": {
+        "photometric_p": 0.5,
+        "iou_crop_p": 0.5,
+        "zoom_out": false,
+        "hflip": true,
+        "multiscale": true
+      }
+    },
+    "experiments": {
+      "dfine_l_640": {
+        "framework": "dfine",
+        "size": "l",
+        "input_size": 640
+      },
+      "dfine_l_1024": {
+        "framework": "dfine",
+        "size": "l",
+        "input_size": 1024,
+        "batch_size": 8
+      },
+      "dfine_l_800": {
+        "framework": "dfine",
+        "size": "l",
+        "input_size": 800,
+        "batch_size": 12
+      },
+      "rtdetrv2_l_640": {
+        "framework": "rtdetrv2",
+        "size": "l",
+        "input_size": 640
+      },
+      "rtdetrv2_l_1024": {
+        "framework": "rtdetrv2",
+        "size": "l",
+        "input_size": 1024,
+        "batch_size": 8
+      },
+      "dfine_x_640": {
+        "framework": "dfine",
+        "size": "x",
+        "input_size": 640
+      },
+      "dfine_x_1024": {
+        "framework": "dfine",
+        "size": "x",
+        "input_size": 1024,
+        "batch_size": 8
+      },
+      "retinanet_640": {
+        "framework": "retinanet",
+        "size": "r50",
+        "input_size": 640
+      },
+      "retinanet_1024": {
+        "framework": "retinanet",
+        "size": "r50",
+        "input_size": 1024,
+        "batch_size": 8
+      },
+      "smoke_dfine_l_640": {
+        "framework": "dfine",
+        "size": "l",
+        "input_size": 640,
+        "epochs": 1,
+        "batch_size": 8,
+        "checkpoint_freq": 1
+      },
+      "smoke_retinanet_640": {
+        "framework": "retinanet",
+        "size": "r50",
+        "input_size": 640,
+        "epochs": 1,
+        "batch_size": 8
+      }
+    },
+    "evaluation": {
+      "iou_threshold": 0.5,
+      "score_threshold": 0.001,
+      "n_boot": 200,
+      "min_gt_for_macro": 10,
+      "class_sets": {
+        "label_classes": [
+          "krill",
+          "benthosema",
+          "bluewhiting",
+          "mackerel",
+          "herring"
+        ]
+      },
+      "batch_size": 16
+    },
+    "summary": {
+      "compare": [
+        [
+          "dfine_l_640",
+          "dfine_l_1024"
+        ],
+        [
+          "dfine_l_1024",
+          "rtdetrv2_l_1024"
+        ],
+        [
+          "dfine_l_1024",
+          "retinanet_1024"
+        ]
+      ],
+      "object_rule_slices": [
+        {
+          "split": "val",
+          "slice": "2018"
+        },
+        {
+          "split": "test",
+          "slice": "2018"
+        },
+        {
+          "split": "test",
+          "slice": "2020-2023"
+        },
+        {
+          "split": "val",
+          "slice": "all"
+        },
+        {
+          "split": "test",
+          "slice": "all"
+        }
+      ],
+      "resolution_checks": [
+        {
+          "split": "val",
+          "slice": "2018"
+        },
+        {
+          "split": "test",
+          "slice": "2018"
+        },
+        {
+          "split": "val",
+          "slice": "all"
+        }
+      ],
+      "confusion_checks": [
+        {
+          "class": "herring",
+          "split": "test",
+          "slice": "2020-2023"
+        },
+        {
+          "class": "herring",
+          "split": "val",
+          "slice": "2018"
+        },
+        {
+          "class": "herring",
+          "split": "test",
+          "slice": "2018"
+        },
+        {
+          "class": "krill",
+          "split": "test",
+          "slice": "2020-2023"
+        },
+        {
+          "class": "krill",
+          "split": "test_2024",
+          "slice": "2024"
+        }
+      ]
+    },
+    "calibration": {
+      "methods": [
+        "temperature",
+        "platt",
+        "isotonic"
+      ],
+      "method": "platt",
+      "fit_on": "all",
+      "focus_year": "2018",
+      "min_focus_detections": 200,
+      "n_bins": 15,
+      "score_floor": 0.05,
+      "n_folds": 2
+    },
+    "inference": {
+      "transects": [
+        "20180505T0637Z",
+        "20180509T0018Z",
+        "20180509T0805Z",
+        "20180509T1938Z"
+      ],
+      "cameras": [
+        "Left"
+      ],
+      "score_floor": 0.05,
+      "count_thresholds": [
+        0.05,
+        0.1,
+        0.2,
+        0.3,
+        0.5
+      ],
+      "resolution_iou": 0.7,
+      "static": {
+        "cell_px": 16,
+        "min_folder_share": 0.2,
+        "iou": 0.5
+      },
+      "batch_size": 16,
+      "review": {
+        "per_sheet": 10,
+        "seed": 0,
+        "sets": [
+          {
+            "class_name": "krill",
+            "bands": [
+              [
+                0.05,
+                0.3
+              ],
+              [
+                0.3,
+                0.6
+              ],
+              [
+                0.6,
+                1.01
+              ]
+            ],
+            "n_per_band": 50
+          },
+          {
+            "class_name": "maurolicus",
+            "bands": [
+              [
+                0.3,
+                1.01
+              ]
+            ],
+            "n_per_band": 50
+          }
+        ]
+      }
+    },
+    "camera_series": {
+      "interval_s": 10,
+      "audit": {
+        "excerpt_minutes": 20,
+        "far_threshold_m": 5
+      },
+      "trend_window_s": 30,
+      "smooth_window_s": 30,
+      "speed_quantile": 0.95,
+      "outlier_mads": 3.0,
+      "max_gap_s": 10,
+      "join_tolerance_ms": 50
+    },
+    "paths": {
+      "source_data": "<source_data>",
+      "annotated_data": "<annotated_data>",
+      "annotated_data_source": "<annotated_data_source>",
+      "project_dir": "<project_dir>",
+      "scratch_dir": "<scratch_dir>"
+    },
+    "experiment": "rtdetrv2_l_1024",
+    "transect": "20180509T1938Z",
+    "camera": "Left"
+  },
+  "inputs": {
+    "detections": {
+      "path": "<project_dir>/runs/inference/rtdetrv2_l_1024_seed0/20180509T1938Z/Left/detections.parquet",
+      "kind": "file",
+      "size": 23421208,
+      "mtime": 1790966013.403876
+    }
+  },
+  "outputs": {
+    "krill/sample.csv": {
+      "sha256": "b32ce0d39597d15f7940c2f88c091829ff2732a112c3f02c5743834622cb3f1f",
+      "size": 11222
+    },
+    "krill/krill_band0_0.05-0.30_sheet0.png": {
+      "sha256": "845459a181938662fee6660eeeeeb3f0f0a1ed2f8c77e24aca974693f2cb2973",
+      "size": 3061314
+    },
+    "krill/krill_band0_0.05-0.30_sheet1.png": {
+      "sha256": "7fc875ce2d24d2f56b699515c6cab1c358dc6aa29261567d7fca2501b8fedbde",
+      "size": 2698305
+    },
+    "krill/krill_band0_0.05-0.30_sheet2.png": {
+      "sha256": "8f4413196ff956dc871e79675c5774b082380e64b9c291d37753480b48d9ba00",
+      "size": 2708719
+    },
+    "krill/krill_band0_0.05-0.30_sheet3.png": {
+      "sha256": "3a4968bca3e604216bc1ba9832b36dd0ba5b45c13db75bb99738e97d6a1aebe1",
+      "size": 2888571
+    },
+    "krill/krill_band0_0.05-0.30_sheet4.png": {
+      "sha256": "dc4d6d856e8c0e46bdf7eea2b522bc2e18bb3440445f6aa1a50c278f96f37360",
+      "size": 2939051
+    },
+    "krill/krill_band1_0.30-0.60_sheet0.png": {
+      "sha256": "2b99daf2c9a2ad3da1530f553ff411a46f79f5c39399d90f46280451e5aee8bd",
+      "size": 2819276
+    },
+    "krill/krill_band1_0.30-0.60_sheet1.png": {
+      "sha256": "d8955296f12f557f55d26cd92c5437d422ac8945a96057d451f73451f475b4d5",
+      "size": 2774524
+    },
+    "krill/krill_band1_0.30-0.60_sheet2.png": {
+      "sha256": "7812c431eaee46f70244a72e7e9d93c44eba5ba4aa4c1958b2c0162f85c934cc",
+      "size": 2809518
+    },
+    "krill/krill_band1_0.30-0.60_sheet3.png": {
+      "sha256": "40e38a6990b8d21ee709e8310f4375db484900aeee65fffdbd0ee08465aed257",
+      "size": 2806013
+    },
+    "krill/krill_band1_0.30-0.60_sheet4.png": {
+      "sha256": "e4261d74c15d638f5a633e1a2b911c922bac8ecf8006af1a6e4885b0d5f90b4b",
+      "size": 2920846
+    },
+    "krill/krill_band2_0.60-1.01_sheet0.png": {
+      "sha256": "118e1144dad1373684376a765dcd4af16e71c838988c62632096ebab31a7927d",
+      "size": 2993676
+    },
+    "krill/krill_band2_0.60-1.01_sheet1.png": {
+      "sha256": "67b81a7c543368fd71a3623e12aa821d037475644d0ada8e4ea816ff4c9522a1",
+      "size": 2718502
+    },
+    "krill/krill_band2_0.60-1.01_sheet2.png": {
+      "sha256": "b8d72b2095cee522badbf45a35b57ccf43a1856a9507eff37319f26b8af3795a",
+      "size": 2718284
+    },
+    "krill/krill_band2_0.60-1.01_sheet3.png": {
+      "sha256": "ab071a64d25ce0ab3358f95315d4718dd014e5018185fd05f254619ac8064627",
+      "size": 2788611
+    },
+    "krill/krill_band2_0.60-1.01_sheet4.png": {
+      "sha256": "7f43d6b365edb15577a5e4b1b17b41120a497c59785d71fcadc18d57f61a5aae",
+      "size": 3195642
+    },
+    "maurolicus/sample.csv": {
+      "sha256": "c804d23a6828ec338c2774f85488b29b647964eef06cd0bdcbc18bba6cb98ef0",
+      "size": 3804
+    },
+    "maurolicus/maurolicus_band0_0.30-1.01_sheet0.png": {
+      "sha256": "e19882df0264570ca11e6d127ae317fc125628faddaa620fef98f38438bfb245",
+      "size": 3363716
+    },
+    "maurolicus/maurolicus_band0_0.30-1.01_sheet1.png": {
+      "sha256": "d8e1ae4f440c4d7a2efcd50e8613139f855dc11531959f8c3d6618a85a1d13ba",
+      "size": 3168540
+    },
+    "maurolicus/maurolicus_band0_0.30-1.01_sheet2.png": {
+      "sha256": "6b13a81a1514be8aa671b4f2147393119261846ba056de10f0bec77100509260",
+      "size": 3284919
+    },
+    "maurolicus/maurolicus_band0_0.30-1.01_sheet3.png": {
+      "sha256": "6a03b3e99950bce55170224ad90fea1dadc77dafeb1b3851c5abb8a14b8c9405",
+      "size": 3285181
+    },
+    "maurolicus/maurolicus_band0_0.30-1.01_sheet4.png": {
+      "sha256": "02ba8cd797e0b6474fc7597b1cfdeac1c86745dd30ceb4c42bc30e0f5e747eee",
+      "size": 3277815
+    },
+    "summary.json": {
+      "sha256": "b799869ad843eefdcb39ae1b41ed2516556c0c670a23c4548397236d7e7615cc",
+      "size": 1903
+    }
+  }
+}

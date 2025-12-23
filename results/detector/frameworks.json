@@ -1,0 +1,30 @@
+{
+  "rtdetrv2": {
+    "repository": "https://github.com/lyuwenyu/RT-DETR",
+    "subdirectory": "rtdetrv2_pytorch",
+    "commit": "29320b6",
+    "commit_date": "2026-09-07",
+    "licence": "Apache-2.0",
+    "pretrained": {
+      "l": "rtdetrv2_r50vd_2x_coco_objects365_from_paddle.pth",
+      "x": "rtdetrv2_r101vd_2x_coco_objects365_from_paddle.pth"
+    }
+  },
+  "dfine": {
+    "repository": "https://github.com/Peterande/D-FINE",
+    "commit": "956d170",
+    "commit_date": "2026-08-19",
+    "licence": "Apache-2.0",
+    "pretrained": {
+      "l": "dfine_l_obj2coco_e25.pth",
+      "x": "dfine_x_obj2coco.pth"
+    }
+  },
+  "retinanet": {
+    "package": "torchvision",
+    "version": "0.29.1",
+    "model": "retinanet_resnet50_fpn_v2",
+    "licence": "BSD-3-Clause",
+    "pretrained": "RetinaNet_ResNet50_FPN_V2_Weights.COCO_V1"
+  }
+}

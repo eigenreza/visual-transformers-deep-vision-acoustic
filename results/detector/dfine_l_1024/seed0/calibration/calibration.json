@@ -1,0 +1,66 @@
+{
+  "experiment": "dfine_l_1024",
+  "seed": 0,
+  "n_detections": 453000,
+  "n_true_positives": 4043,
+  "focus_year": "2018",
+  "n_focus_detections": 8400,
+  "chosen": "platt_all",
+  "calibrator": {
+    "method": "platt",
+    "params": {
+      "slope": 1.7886568387948691,
+      "intercept": -1.2161715209370907
+    }
+  },
+  "ece_all": {
+    "identity": 0.02215260736831766,
+    "temperature_all": 0.0021555222081752197,
+    "temperature_2018": 0.0027034714016193158,
+    "platt_all": 0.0002569764620980241,
+    "platt_2018": 0.0023272390412648887,
+    "isotonic_all": 7.247568541660755e-11
+  },
+  "ece_2018": {
+    "identity": 0.028568352744692844,
+    "temperature_all": 0.0047830161450407045,
+    "temperature_2018": 0.0054603171820069235,
+    "platt_all": 0.0024582410583271876,
+    "platt_2018": 0.0012028041491386773,
+    "isotonic_all": 0.0022961805617993988
+  },
+  "nll_all": {
+    "identity": 0.028880437497387376,
+    "temperature_all": 0.010369347608426118,
+    "temperature_2018": 0.010501757199373046,
+    "platt_all": 0.008992677165044977,
+    "platt_2018": 0.010617599406013627,
+    "isotonic_all": 0.008802846492123236
+  },
+  "nll_2018": {
+    "identity": 0.03744139016169868,
+    "temperature_all": 0.01781784831321756,
+    "temperature_2018": 0.017630826048509136,
+    "platt_all": 0.013121587173314698,
+    "platt_2018": 0.01154033212733547,
+    "isotonic_all": 0.01272730021189616
+  },
+  "cross_fitted_ece_all_above_0.05": {
+    "temperature": 0.02226868018276589,
+    "platt": 0.005360618490691313,
+    "isotonic": 0.007397464698665591,
+    "identity": 0.08771034066281758
+  },
+  "cross_fitted_ece_2018_above_0.05": {
+    "temperature": 0.04503280966672392,
+    "platt": 0.02852649151928731,
+    "isotonic": 0.027632583885655093,
+    "identity": 0.10595803190600696
+  },
+  "cross_fitted_nll_all_above_0.05": {
+    "temperature": 0.09821170346523556,
+    "platt": 0.08495583327057601,
+    "isotonic": 0.08773861394121268,
+    "identity": 0.15178181204282096
+  }
+}

@@ -1,0 +1,21 @@
+# Stage 0: development sample pulled from the full sources.
+stage: sample
+seed: 0
+zarr_store: S2018105_sv.zarr
+
+annotations:
+  n_pairs: 300
+  per_year_min: 20
+  per_label_min: 3
+
+acoustics:
+  # One hour inside the evening transect of 9 May 2018, all frequencies.
+  start: "2018-05-09T20:00:00"
+  end: "2018-05-09T21:00:00"
+  max_range_m: 320
+
+transect:
+  id: 20180509T1938Z
+  folder: 200536Z_active
+  n_frames_left: 60
+  n_frames_right: 10

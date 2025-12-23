@@ -1,0 +1,6 @@
+# Locations on a development machine holding only sampled data.
+source_data: data/samples/source_data
+annotated_data: data/samples/annotated_data
+annotated_data_source: null
+project_dir: data/project
+scratch_dir: data/scratch

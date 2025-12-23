@@ -1,0 +1,53 @@
+# Private working material, never committed
+reference/
+CLAUDE.md
+
+# Data and model artefacts
+/data/
+/checkpoints/
+*.zarr
+*.pt
+*.pth
+*.onnx
+*.npz
+*.npy
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Environments and editors
+.venv/
+venv/
+.env
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Stage outputs kept outside the repository
+/runs/
+
+# Run logs written next to stage outputs
+run.log
+
+# Machine-specific settings: local copies of the tracked example files
+/configs/paths/*.yaml
+!/configs/paths/*.example.yaml
+!/configs/paths/laptop.yaml
+/scripts/server.env

@@ -1,0 +1,4 @@
+anomaly,2017,2018,2021,2022,2023,total
+filename_field_differs,178,165,0,1074,1660,3077
+missing_size,0,0,162,0,91,253
+no_boxes,0,0,0,206,238,444

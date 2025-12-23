@@ -1,0 +1,35 @@
+# Stage 1: annotation dataset for detector training.
+stage: dataset
+seed: 0
+n_workers: 32
+taxonomy_file: configs/taxonomy.yaml
+
+annotations:
+  image_extensions: [".jpg", ".jpeg", ".png"]
+  exclude_top_level_dirs: [images, xml]
+  paired_statuses: [paired, paired_by_stem]
+
+splits:
+  # All material of a held-out year goes to the named split and nothing else does.
+  holdout_years: {"2024": test_2024}
+  fractions: {train: 0.70, val: 0.15, test: 0.15}
+  # Stations recorded during the transects used for label generation.
+  forced_tows: {"2018/ST12": train, "2018/ST13": train, "2018/ST14": train}
+  n_restarts: 40
+  n_moves: 6000
+  min_tows_for_presence_penalty: 3
+  # The detector labels 2018 imagery, so its performance on 2018 must be
+  # measurable: at least five 2018 stations in validation and five in test.
+  min_tows_per_split: {"2018": {val: 5, test: 5}}
+  # Frames whose timestamp falls in these windows were recorded during the
+  # label-generation transects and may only sit in the training split.
+  inference_transect_windows:
+    20180505T0637Z: ["2018-05-05T06:37:00", "2018-05-05T08:15:00"]
+    20180509T0018Z: ["2018-05-09T00:18:00", "2018-05-09T02:24:00"]
+    20180509T0805Z: ["2018-05-09T08:05:00", "2018-05-09T10:08:00"]
+    20180509T1938Z: ["2018-05-09T19:38:00", "2018-05-09T21:55:00"]
+
+export:
+  coco: true
+  clip_boxes: true
+  min_box_side_px: 2

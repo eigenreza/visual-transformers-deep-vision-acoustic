@@ -1,0 +1,221 @@
+{
+  "object_rule": "per_class",
+  "pooled_threshold": 0.47,
+  "experiment": "rtdetrv2_l_1024",
+  "seed": 0,
+  "transect": "20180505T0637Z",
+  "camera": "Left",
+  "n_frames": 28683,
+  "n_detections": 3100280,
+  "score_floor": 0.05,
+  "calibrated": true,
+  "operating_thresholds": {
+    "maurolicus": 0.33,
+    "krill": 0.33,
+    "benthosema": 0.43,
+    "redfish": 0.92,
+    "bluewhiting": 0.41,
+    "gelatinous": 0.5,
+    "mackerel": 0.27,
+    "herring": 0.87,
+    "gonatus": 0.39,
+    "sergestes": 0.34,
+    "capelin": 1.0,
+    "pasiphaea": 0.32,
+    "barracudina": 0.07,
+    "unidentified": 0.17
+  },
+  "no_detection_rate_at_floor": 0.02768190217201827,
+  "no_detection_rate_at_operating": 0.4468151866959523,
+  "no_detection_rate_by_folder": {
+    "063755Z_active": 0.167,
+    "064441Z_active": 0.094,
+    "065127Z_active": 0.0105,
+    "065813Z_active": 0.033,
+    "070458Z_active": 0.0005,
+    "071144Z_active": 0.0,
+    "071829Z_active": 0.0,
+    "072515Z_active": 0.0,
+    "073201Z_active": 0.0,
+    "073846Z_active": 0.0,
+    "074532Z_active": 0.0,
+    "075217Z_active": 0.0,
+    "075903Z_active": 0.039,
+    "080549Z_active": 0.053,
+    "081234Z_active": 0.0
+  },
+  "detections_per_class_at_floor": {
+    "krill": 1885526,
+    "gonatus": 816642,
+    "benthosema": 149666,
+    "maurolicus": 57835,
+    "bluewhiting": 56814,
+    "sergestes": 32903,
+    "gelatinous": 31134,
+    "herring": 25096,
+    "mackerel": 17467,
+    "unidentified": 15555,
+    "pasiphaea": 7997,
+    "capelin": 1888,
+    "barracudina": 1460,
+    "redfish": 297
+  },
+  "score_quantiles_by_class": {
+    "barracudina": {
+      "0.1": 0.0515,
+      "0.5": 0.0632,
+      "0.9": 0.1279
+    },
+    "benthosema": {
+      "0.1": 0.0529,
+      "0.5": 0.0728,
+      "0.9": 0.2111
+    },
+    "bluewhiting": {
+      "0.1": 0.0518,
+      "0.5": 0.0619,
+      "0.9": 0.1002
+    },
+    "capelin": {
+      "0.1": 0.0512,
+      "0.5": 0.0573,
+      "0.9": 0.0767
+    },
+    "gelatinous": {
+      "0.1": 0.0525,
+      "0.5": 0.0694,
+      "0.9": 0.2095
+    },
+    "gonatus": {
+      "0.1": 0.0553,
+      "0.5": 0.0811,
+      "0.9": 0.1753
+    },
+    "herring": {
+      "0.1": 0.0535,
+      "0.5": 0.0728,
+      "0.9": 0.1395
+    },
+    "krill": {
+      "0.1": 0.0627,
+      "0.5": 0.1392,
+      "0.9": 0.5029
+    },
+    "mackerel": {
+      "0.1": 0.0539,
+      "0.5": 0.0797,
+      "0.9": 0.2013
+    },
+    "maurolicus": {
+      "0.1": 0.0527,
+      "0.5": 0.0699,
+      "0.9": 0.197
+    },
+    "pasiphaea": {
+      "0.1": 0.0519,
+      "0.5": 0.0634,
+      "0.9": 0.1478
+    },
+    "redfish": {
+      "0.1": 0.0517,
+      "0.5": 0.0599,
+      "0.9": 0.0969
+    },
+    "sergestes": {
+      "0.1": 0.0528,
+      "0.5": 0.0696,
+      "0.9": 0.1315
+    },
+    "unidentified": {
+      "0.1": 0.0533,
+      "0.5": 0.0792,
+      "0.9": 0.6641
+    }
+  },
+  "static_templates": [
+    {
+      "folder": "081234Z_active",
+      "class_name": "benthosema",
+      "x0": 689.5999755859375,
+      "y0": 0.800000011920929,
+      "x1": 805.4000244140625,
+      "y1": 71.19999694824219,
+      "frames_with_box": 661,
+      "folder_frames": 683.0,
+      "share": 1.0
+    },
+    {
+      "folder": "063755Z_active",
+      "class_name": "benthosema",
+      "x0": 689.5,
+      "y0": 0.6000000238418579,
+      "x1": 804.0999755859375,
+      "y1": 64.4000015258789,
+      "frames_with_box": 1216,
+      "folder_frames": 2000.0,
+      "share": 0.6
+    },
+    {
+      "folder": "080549Z_active",
+      "class_name": "benthosema",
+      "x0": 689.2000122070312,
+      "y0": 0.6000000238418579,
+      "x1": 805.9000244140625,
+      "y1": 71.0999984741211,
+      "frames_with_box": 1072,
+      "folder_frames": 2000.0,
+      "share": 0.5
+    },
+    {
+      "folder": "063755Z_active",
+      "class_name": "unidentified",
+      "x0": 0.30000001192092896,
+      "y0": 196.39999389648438,
+      "x1": 136.3000030517578,
+      "y1": 892.5,
+      "frames_with_box": 1071,
+      "folder_frames": 2000.0,
+      "share": 0.5
+    },
+    {
+      "folder": "063755Z_active",
+      "class_name": "maurolicus",
+      "x0": 557.7000122070312,
+      "y0": 872.4000244140625,
+      "x1": 578.2999877929688,
+      "y1": 899.7000122070312,
+      "frames_with_box": 415,
+      "folder_frames": 2000.0,
+      "share": 0.2
+    }
+  ],
+  "static_objects_per_class": {
+    "benthosema": {
+      "static": 2979,
+      "total": 3178
+    },
+    "bluewhiting": {
+      "static": 2,
+      "total": 63
+    },
+    "gelatinous": {
+      "static": 26,
+      "total": 56
+    },
+    "krill": {
+      "static": 16,
+      "total": 158416
+    },
+    "maurolicus": {
+      "static": 562,
+      "total": 1667
+    },
+    "unidentified": {
+      "static": 1251,
+      "total": 2041
+    }
+  },
+  "frames_with_static": 3088,
+  "seconds_by_folder": {},
+  "frames_per_second": null
+}

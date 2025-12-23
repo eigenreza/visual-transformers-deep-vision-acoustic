@@ -1,0 +1,66 @@
+{
+  "experiment": "rtdetrv2_l_1024",
+  "seed": 1,
+  "n_detections": 453000,
+  "n_true_positives": 4028,
+  "focus_year": "2018",
+  "n_focus_detections": 8400,
+  "chosen": "platt_all",
+  "calibrator": {
+    "method": "platt",
+    "params": {
+      "slope": 1.6090433083458504,
+      "intercept": -0.930052461103939
+    }
+  },
+  "ece_all": {
+    "identity": 0.013333213351420218,
+    "temperature_all": 0.0013870658346478734,
+    "temperature_2018": 0.0021566829679980364,
+    "platt_all": 0.0003524652598936702,
+    "platt_2018": 0.0015260280672237624,
+    "isotonic_all": 8.80553338194514e-11
+  },
+  "ece_2018": {
+    "identity": 0.011776070821852915,
+    "temperature_all": 0.0018661777399051963,
+    "temperature_2018": 0.0024375535449672864,
+    "platt_all": 0.0020856575858250424,
+    "platt_2018": 0.000991329752785851,
+    "isotonic_all": 0.0015936978500524542
+  },
+  "nll_all": {
+    "identity": 0.01959580655072303,
+    "temperature_all": 0.009018054181736223,
+    "temperature_2018": 0.009300291698022056,
+    "platt_all": 0.00833648169759845,
+    "platt_2018": 0.009066840247055945,
+    "isotonic_all": 0.008077348329191956
+  },
+  "nll_2018": {
+    "identity": 0.018421030838293283,
+    "temperature_all": 0.011093553880780203,
+    "temperature_2018": 0.010793972783957825,
+    "platt_all": 0.009853808423105636,
+    "platt_2018": 0.009246945083461557,
+    "isotonic_all": 0.008992223359621767
+  },
+  "cross_fitted_ece_all_above_0.05": {
+    "temperature": 0.028794055802985268,
+    "platt": 0.01766169814803234,
+    "isotonic": 0.022298572494291916,
+    "identity": 0.07448493779241844
+  },
+  "cross_fitted_ece_2018_above_0.05": {
+    "temperature": 0.07650040935128281,
+    "platt": 0.07545372804231715,
+    "isotonic": 0.06774474957804658,
+    "identity": 0.081836785959862
+  },
+  "cross_fitted_nll_all_above_0.05": {
+    "temperature": 0.17894915224248092,
+    "platt": 0.16716438634211914,
+    "isotonic": 0.1732959042534321,
+    "identity": 0.20358638423642259
+  }
+}

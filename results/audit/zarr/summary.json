@@ -1,0 +1,406 @@
+{
+  "store": "<source_data>/S2018105_sv.zarr",
+  "attrs": {
+    "KORONA version": "2.15.0-alpha",
+    "description": "Multi-frequency sv values from EK.",
+    "git_commit": "66da53a22c64177d2b99502a59eb8553279fc2ae",
+    "name": "Dockerized KORONA",
+    "scriptversion": "1.0.0",
+    "time": "2023-11-11T23:49:48Z"
+  },
+  "dims": {
+    "frequency": 6,
+    "ping_time": 2370877,
+    "range": 2500
+  },
+  "variables": {
+    "channel_id": {
+      "dims": [
+        "frequency"
+      ],
+      "dtype": "<U38",
+      "shape": [
+        6
+      ],
+      "attrs": {}
+    },
+    "frequency": {
+      "dims": [
+        "frequency"
+      ],
+      "dtype": "float64",
+      "shape": [
+        6
+      ],
+      "attrs": {}
+    },
+    "latitude": {
+      "dims": [
+        "ping_time"
+      ],
+      "dtype": "float64",
+      "shape": [
+        2370877
+      ],
+      "attrs": {}
+    },
+    "longitude": {
+      "dims": [
+        "ping_time"
+      ],
+      "dtype": "float64",
+      "shape": [
+        2370877
+      ],
+      "attrs": {}
+    },
+    "ping_time": {
+      "dims": [
+        "ping_time"
+      ],
+      "dtype": "datetime64[ns]",
+      "shape": [
+        2370877
+      ],
+      "attrs": {}
+    },
+    "range": {
+      "dims": [
+        "range"
+      ],
+      "dtype": "float64",
+      "shape": [
+        2500
+      ],
+      "attrs": {}
+    },
+    "raw_file": {
+      "dims": [
+        "ping_time"
+      ],
+      "dtype": "<U29",
+      "shape": [
+        2370877
+      ],
+      "attrs": {}
+    },
+    "angle_alongship": {
+      "dims": [
+        "frequency",
+        "ping_time",
+        "range"
+      ],
+      "dtype": "float32",
+      "shape": [
+        6,
+        2370877,
+        2500
+      ],
+      "attrs": {}
+    },
+    "angle_athwartship": {
+      "dims": [
+        "frequency",
+        "ping_time",
+        "range"
+      ],
+      "dtype": "float32",
+      "shape": [
+        6,
+        2370877,
+        2500
+      ],
+      "attrs": {}
+    },
+    "distance": {
+      "dims": [
+        "ping_time"
+      ],
+      "dtype": "float64",
+      "shape": [
+        2370877
+      ],
+      "attrs": {}
+    },
+    "heading": {
+      "dims": [
+        "ping_time"
+      ],
+      "dtype": "float32",
+      "shape": [
+        2370877
+      ],
+      "attrs": {}
+    },
+    "heave": {
+      "dims": [
+        "ping_time"
+      ],
+      "dtype": "float32",
+      "shape": [
+        2370877
+      ],
+      "attrs": {}
+    },
+    "pitch": {
+      "dims": [
+        "ping_time"
+      ],
+      "dtype": "float32",
+      "shape": [
+        2370877
+      ],
+      "attrs": {}
+    },
+    "pulse_length": {
+      "dims": [
+        "ping_time",
+        "frequency"
+      ],
+      "dtype": "float32",
+      "shape": [
+        2370877,
+        6
+      ],
+      "attrs": {}
+    },
+    "roll": {
+      "dims": [
+        "ping_time"
+      ],
+      "dtype": "float32",
+      "shape": [
+        2370877
+      ],
+      "attrs": {}
+    },
+    "sv": {
+      "dims": [
+        "frequency",
+        "ping_time",
+        "range"
+      ],
+      "dtype": "float32",
+      "shape": [
+        6,
+        2370877,
+        2500
+      ],
+      "attrs": {}
+    },
+    "transducer_draft": {
+      "dims": [
+        "frequency",
+        "ping_time"
+      ],
+      "dtype": "float32",
+      "shape": [
+        6,
+        2370877
+      ],
+      "attrs": {}
+    }
+  },
+  "sv_chunks": [
+    1,
+    10000,
+    2500
+  ],
+  "channel_frequency_agreement": true,
+  "frequencies_hz": [
+    38000.0,
+    18000.0,
+    70000.0,
+    120000.0,
+    200000.0,
+    333000.0
+  ],
+  "range": {
+    "min_m": 0.0,
+    "max_m": 499.8000183105469,
+    "n": 2500,
+    "step_m_median": 0.1999988555908203,
+    "step_m_min": 0.199981689453125,
+    "step_m_max": 0.20001220703125
+  },
+  "ping_time": {
+    "n_pings": 2370877,
+    "first": "2018-04-30T20:02:49.016000000",
+    "last": "2018-05-31T16:02:31.488000000",
+    "monotonic_increasing": true,
+    "n_nonpositive_steps": 0,
+    "interval_s": {
+      "p0": 0.217,
+      "p1": 0.8,
+      "p5": 0.84,
+      "p25": 0.879,
+      "p50": 0.94,
+      "p75": 1.038,
+      "p95": 1.671,
+      "p99": 4.361,
+      "p99.9": 7.191,
+      "p100": 116560.799
+    },
+    "gaps": {
+      "5": {
+        "count": 13569,
+        "total_hours": 57.173428611111106
+      },
+      "10": {
+        "count": 49,
+        "total_hours": 34.653822777777776
+      },
+      "60": {
+        "count": 20,
+        "total_hours": 34.457258055555556
+      },
+      "600": {
+        "count": 4,
+        "total_hours": 33.76262972222222
+      }
+    }
+  },
+  "transducer_draft": {
+    "constant_over_cruise": false,
+    "identical_across_channels": true,
+    "unique_values": [
+      6.0,
+      8.5
+    ]
+  },
+  "pulse_length_s": {
+    "38000.0": {
+      "0.001024": 2370877
+    },
+    "18000.0": {
+      "0.001024": 2370877
+    },
+    "70000.0": {
+      "0.001024": 2370877
+    },
+    "120000.0": {
+      "0.001024": 2159267,
+      "0.002048": 93635,
+      "0.004096": 117975
+    },
+    "200000.0": {
+      "0.001024": 63686,
+      "0.002048": 2146220,
+      "0.004096": 240,
+      "0.008192": 160731
+    },
+    "333000.0": {
+      "0.001024": 2352903,
+      "0.002048": 17974
+    }
+  },
+  "position": {
+    "lat_nan": 0,
+    "lon_nan": 0,
+    "lat_min": 60.38508244999999,
+    "lat_max": 72.36029042065947,
+    "lon_min": -14.003059195795569,
+    "lon_max": 20.178700395932356
+  },
+  "raw_files": {
+    "n_unique": 10792
+  },
+  "sv_per_frequency": [
+    {
+      "frequency_hz": 38000.0,
+      "nan_fraction": 0.0,
+      "zero_fraction": 0.0,
+      "negative_fraction": 0.0,
+      "at_or_below_-100dB_fraction": 0.20807159831572875,
+      "at_or_below_-90dB_fraction": 0.44708797276282153,
+      "at_or_below_-80dB_fraction": 0.7372288507586011,
+      "last_range_m_with_under_50pct_missing": 499.8000183105469,
+      "pings_entirely_missing": 0,
+      "pings_entirely_missing_fraction": 0.0,
+      "db_p05_in_hist_range": -110.0,
+      "db_median_in_hist_range": -89.0,
+      "db_p95_in_hist_range": -68.0,
+      "fraction_in_hist_range": 0.9995648457511714
+    },
+    {
+      "frequency_hz": 18000.0,
+      "nan_fraction": 0.004384031731717841,
+      "zero_fraction": 0.0,
+      "negative_fraction": 0.0,
+      "at_or_below_-100dB_fraction": 0.12811718785917617,
+      "at_or_below_-90dB_fraction": 0.32445656674724166,
+      "at_or_below_-80dB_fraction": 0.5998608754481991,
+      "last_range_m_with_under_50pct_missing": 499.8000183105469,
+      "pings_entirely_missing": 10394,
+      "pings_entirely_missing_fraction": 0.004384031731717841,
+      "db_p05_in_hist_range": -106.0,
+      "db_median_in_hist_range": -84.0,
+      "db_p95_in_hist_range": -62.0,
+      "fraction_in_hist_range": 0.9956014384550527
+    },
+    {
+      "frequency_hz": 70000.0,
+      "nan_fraction": 0.0,
+      "zero_fraction": 0.0,
+      "negative_fraction": 0.0,
+      "at_or_below_-100dB_fraction": 0.09318821094472636,
+      "at_or_below_-90dB_fraction": 0.35056095444850155,
+      "at_or_below_-80dB_fraction": 0.7538973446534764,
+      "last_range_m_with_under_50pct_missing": 499.8000183105469,
+      "pings_entirely_missing": 0,
+      "pings_entirely_missing_fraction": 0.0,
+      "db_p05_in_hist_range": -104.0,
+      "db_median_in_hist_range": -87.0,
+      "db_p95_in_hist_range": -70.0,
+      "fraction_in_hist_range": 0.9995938125849633
+    },
+    {
+      "frequency_hz": 120000.0,
+      "nan_fraction": 0.19315565084143968,
+      "zero_fraction": 0.0,
+      "negative_fraction": 0.0,
+      "at_or_below_-100dB_fraction": 0.01657229995482684,
+      "at_or_below_-90dB_fraction": 0.15559116748781146,
+      "at_or_below_-80dB_fraction": 0.4849232981719423,
+      "last_range_m_with_under_50pct_missing": 399.8000183105469,
+      "pings_entirely_missing": 0,
+      "pings_entirely_missing_fraction": 0.0,
+      "db_p05_in_hist_range": -97.0,
+      "db_median_in_hist_range": -83.0,
+      "db_p95_in_hist_range": -66.0,
+      "fraction_in_hist_range": 0.8061142657337348
+    },
+    {
+      "frequency_hz": 200000.0,
+      "nan_fraction": 0.28887936742395326,
+      "zero_fraction": 0.0,
+      "negative_fraction": 0.0,
+      "at_or_below_-100dB_fraction": 4.2430206206395355e-05,
+      "at_or_below_-90dB_fraction": 0.002900842683951972,
+      "at_or_below_-80dB_fraction": 0.08008604984569001,
+      "last_range_m_with_under_50pct_missing": 348.3999938964844,
+      "pings_entirely_missing": 0,
+      "pings_entirely_missing_fraction": 0.0,
+      "db_p05_in_hist_range": -83.0,
+      "db_median_in_hist_range": -67.0,
+      "db_p95_in_hist_range": -45.0,
+      "fraction_in_hist_range": 0.7110960361081574
+    },
+    {
+      "frequency_hz": 333000.0,
+      "nan_fraction": 0.5425301675287246,
+      "zero_fraction": 0.0,
+      "negative_fraction": 0.0,
+      "at_or_below_-100dB_fraction": 0.00013276926639382811,
+      "at_or_below_-90dB_fraction": 0.00637748951126524,
+      "at_or_below_-80dB_fraction": 0.08686145236551707,
+      "last_range_m_with_under_50pct_missing": 199.60000610351562,
+      "pings_entirely_missing": 0,
+      "pings_entirely_missing_fraction": 0.0,
+      "db_p05_in_hist_range": -86.0,
+      "db_median_in_hist_range": -71.0,
+      "db_p95_in_hist_range": -39.0,
+      "fraction_in_hist_range": 0.45416532835739687
+    }
+  ]
+}

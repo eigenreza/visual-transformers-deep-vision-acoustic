@@ -1,0 +1,13 @@
+{
+  "experiment": "rtdetrv2_l_1024",
+  "seed": 2,
+  "framework": "rtdetrv2",
+  "input_size": 1024,
+  "epochs_run": 40,
+  "best_checkpoint": "<scratch_dir>/runs/detector/rtdetrv2_l_1024/seed2/framework/best.pth",
+  "best_epoch": 35,
+  "best_val_map": 0.6007157623013757,
+  "best_val_map50": 0.8128306382700544,
+  "last_val_map": 0.5981581160533384,
+  "weights": "<project_dir>/weights/detector/rtdetrv2_l_1024_seed2.pth"
+}

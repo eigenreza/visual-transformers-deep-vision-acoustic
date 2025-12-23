@@ -1,0 +1,80 @@
+{
+  "experiment": "rtdetrv2_l_1024",
+  "seed": 0,
+  "transect": "20180505T0637Z",
+  "camera": "Left",
+  "sets": [
+    {
+      "class_name": "krill",
+      "n_frames_with_class": 25363,
+      "sheets": [
+        "krill_band0_0.05-0.30_sheet0.png",
+        "krill_band0_0.05-0.30_sheet1.png",
+        "krill_band0_0.05-0.30_sheet2.png",
+        "krill_band0_0.05-0.30_sheet3.png",
+        "krill_band0_0.05-0.30_sheet4.png",
+        "krill_band1_0.30-0.60_sheet0.png",
+        "krill_band1_0.30-0.60_sheet1.png",
+        "krill_band1_0.30-0.60_sheet2.png",
+        "krill_band1_0.30-0.60_sheet3.png",
+        "krill_band1_0.30-0.60_sheet4.png",
+        "krill_band2_0.60-1.01_sheet0.png",
+        "krill_band2_0.60-1.01_sheet1.png",
+        "krill_band2_0.60-1.01_sheet2.png",
+        "krill_band2_0.60-1.01_sheet3.png",
+        "krill_band2_0.60-1.01_sheet4.png"
+      ],
+      "bands": [
+        [
+          0.05,
+          0.3
+        ],
+        [
+          0.3,
+          0.6
+        ],
+        [
+          0.6,
+          1.01
+        ]
+      ],
+      "per_band": {
+        "0": {
+          "n_sampled": 50,
+          "n_frames_available": 2754
+        },
+        "1": {
+          "n_sampled": 50,
+          "n_frames_available": 3732
+        },
+        "2": {
+          "n_sampled": 50,
+          "n_frames_available": 10369
+        }
+      }
+    },
+    {
+      "class_name": "maurolicus",
+      "n_frames_with_class": 15444,
+      "sheets": [
+        "maurolicus_band0_0.30-1.01_sheet0.png",
+        "maurolicus_band0_0.30-1.01_sheet1.png",
+        "maurolicus_band0_0.30-1.01_sheet2.png",
+        "maurolicus_band0_0.30-1.01_sheet3.png",
+        "maurolicus_band0_0.30-1.01_sheet4.png"
+      ],
+      "bands": [
+        [
+          0.3,
+          1.01
+        ]
+      ],
+      "per_band": {
+        "0": {
+          "n_sampled": 50,
+          "n_frames_available": 832
+        }
+      }
+    }
+  ]
+}

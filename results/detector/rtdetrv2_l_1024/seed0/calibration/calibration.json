@@ -1,0 +1,66 @@
+{
+  "experiment": "rtdetrv2_l_1024",
+  "seed": 0,
+  "n_detections": 453000,
+  "n_true_positives": 4039,
+  "focus_year": "2018",
+  "n_focus_detections": 8400,
+  "chosen": "platt_all",
+  "calibrator": {
+    "method": "platt",
+    "params": {
+      "slope": 1.5724548285052498,
+      "intercept": -0.9879681793062041
+    }
+  },
+  "ece_all": {
+    "identity": 0.013753571120845298,
+    "temperature_all": 0.0015676849638433022,
+    "temperature_2018": 0.0017549347333051576,
+    "platt_all": 0.0003784564633437914,
+    "platt_2018": 0.0018022191380516579,
+    "isotonic_all": 1.401124289081259e-10
+  },
+  "ece_2018": {
+    "identity": 0.017186366489955363,
+    "temperature_all": 0.003059111915896899,
+    "temperature_2018": 0.0033075068321894523,
+    "platt_all": 0.001749277724699187,
+    "platt_2018": 0.0011117649483109585,
+    "isotonic_all": 0.00161693832781566
+  },
+  "nll_all": {
+    "identity": 0.02049309281480546,
+    "temperature_all": 0.009787630560884539,
+    "temperature_2018": 0.009808990118318307,
+    "platt_all": 0.008966019774303335,
+    "platt_2018": 0.009974217167319383,
+    "isotonic_all": 0.008704364396368434
+  },
+  "nll_2018": {
+    "identity": 0.024658370340140113,
+    "temperature_all": 0.013441875796670248,
+    "temperature_2018": 0.013415938571755473,
+    "platt_all": 0.011076026948926438,
+    "platt_2018": 0.010234024717578649,
+    "isotonic_all": 0.010520293352431181
+  },
+  "cross_fitted_ece_all_above_0.05": {
+    "temperature": 0.03270478191952633,
+    "platt": 0.019159755172441936,
+    "isotonic": 0.024341049322163483,
+    "identity": 0.07541511088668862
+  },
+  "cross_fitted_ece_2018_above_0.05": {
+    "temperature": 0.06092475546203113,
+    "platt": 0.04352445042857321,
+    "isotonic": 0.03530069885914307,
+    "identity": 0.11093202825147266
+  },
+  "cross_fitted_nll_all_above_0.05": {
+    "temperature": 0.1889935334925244,
+    "platt": 0.17710470366838918,
+    "isotonic": 0.18382199096974605,
+    "identity": 0.2103971253481291
+  }
+}

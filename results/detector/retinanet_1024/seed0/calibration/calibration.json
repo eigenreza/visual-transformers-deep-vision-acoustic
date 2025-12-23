@@ -1,0 +1,66 @@
+{
+  "experiment": "retinanet_1024",
+  "seed": 0,
+  "n_detections": 452306,
+  "n_true_positives": 3954,
+  "focus_year": "2018",
+  "n_focus_detections": 8400,
+  "chosen": "platt_all",
+  "calibrator": {
+    "method": "platt",
+    "params": {
+      "slope": 1.59812700133287,
+      "intercept": -0.38836342789283945
+    }
+  },
+  "ece_all": {
+    "identity": 0.011560312494624577,
+    "temperature_all": 0.000731305228503726,
+    "temperature_2018": 0.0005881039364799686,
+    "platt_all": 0.000682145447344837,
+    "platt_2018": 0.0019182370136902657,
+    "isotonic_all": 1.1418022228932675e-10
+  },
+  "ece_2018": {
+    "identity": 0.01969978627704439,
+    "temperature_all": 0.004006112308081807,
+    "temperature_2018": 0.003678146498370007,
+    "platt_all": 0.003301674234921389,
+    "platt_2018": 0.0016983921189019087,
+    "isotonic_all": 0.003083550459124949
+  },
+  "nll_all": {
+    "identity": 0.019900384375294844,
+    "temperature_all": 0.010922075616646694,
+    "temperature_2018": 0.010936602556098157,
+    "platt_all": 0.010806285899574743,
+    "platt_2018": 0.011759549803018696,
+    "isotonic_all": 0.010272369875659987
+  },
+  "nll_2018": {
+    "identity": 0.02860607337656825,
+    "temperature_all": 0.01545087134966924,
+    "temperature_2018": 0.015430281927873296,
+    "platt_all": 0.014357501033285711,
+    "platt_2018": 0.01308611777310166,
+    "isotonic_all": 0.013560066598872655
+  },
+  "cross_fitted_ece_all_above_0.05": {
+    "temperature": 0.012351951087351515,
+    "platt": 0.02754044483995905,
+    "isotonic": 0.022823141977939346,
+    "identity": 0.05888304718316578
+  },
+  "cross_fitted_ece_2018_above_0.05": {
+    "temperature": 0.05750463959751743,
+    "platt": 0.05469760347415905,
+    "isotonic": 0.057145584824651784,
+    "identity": 0.10824766197417042
+  },
+  "cross_fitted_nll_all_above_0.05": {
+    "temperature": 0.19180342485447965,
+    "platt": 0.20374792027664768,
+    "isotonic": 0.19773077264757735,
+    "identity": 0.21338927308907774
+  }
+}

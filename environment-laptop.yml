@@ -1,0 +1,33 @@
+# Conda environment for a laptop without a usable training GPU (CPU-only PyTorch).
+# Used for unit tests, small samples and documentation. Same package versions as on the compute server.
+# Create with:  conda env create -f environment-laptop.yml
+name: acoustic-cpu
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cpu
+      - torch==2.14.1
+      - torchvision==0.29.1
+      - numpy==2.4.6
+      - scipy==1.17.1
+      - pandas==3.0.6
+      - pyarrow==25.0.1
+      - xarray==2026.9.0
+      - zarr==3.1.6
+      - numcodecs==0.16.5
+      - dask[array,dataframe,distributed,diagnostics]==2026.8.0
+      - distributed==2026.8.0
+      - scikit-learn==1.9.1
+      - pillow==12.3.0
+      - lxml==6.1.3
+      - pyyaml==6.0.3
+      - matplotlib==3.11.2
+      - tqdm==4.70.1
+      - pytest==9.1.1
+      - pytest-cov==7.1.0
+      - ruff==0.16.9
+      - faster-coco-eval==1.8.0
+      - pycocotools==2.0.11

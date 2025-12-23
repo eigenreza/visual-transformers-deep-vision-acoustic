@@ -1,0 +1,87 @@
+# Stage 5: acoustic preprocessing. The exploration command reads each transect
+# window at full resolution and summarises levels, missing values, bottom
+# echoes and impulsive noise. The preprocessing commands apply the masks and
+# the noise correction derived from it and export the transect subsets and
+# the whole-cruise product.
+stage: acoustics
+seed: 0
+n_workers: 32
+
+store: S2018105_sv.zarr
+# Transducer draft during the transects (metres); depth = range + draft.
+draft_m: 8.5
+# Linear sv at or below this level is treated as the floor in decibels.
+floor_db: -130
+reference_hz: 38000
+
+# Camera recording spans with a margin of 30 minutes on each side.
+transect_windows:
+  20180505T0637Z: ["2018-05-05T06:07:00", "2018-05-05T08:45:00"]
+  20180509T0018Z: ["2018-05-08T23:48:00", "2018-05-09T02:54:00"]
+  20180509T0805Z: ["2018-05-09T07:35:00", "2018-05-09T10:38:00"]
+  20180509T1938Z: ["2018-05-09T19:08:00", "2018-05-09T22:25:00"]
+
+exploration:
+  coarse_time_step_s: 10
+  coarse_depth_step_m: 2
+  figure_frequencies_hz: [38000, 200000]
+
+preprocessing:
+  sound_speed_m_s: 1500
+  # Environment for the sea-water absorption model.
+  absorption: {temperature_c: 7.0, salinity_psu: 35.0, depth_m: 100.0, ph: 8.0}
+  # Range below the transducer excluded per frequency (metres), from the
+  # quietest-ping profiles of the exploration at full range resolution: the
+  # 18 kHz channel is contaminated to about 60 m, the 38 kHz level falls
+  # below -90 dB at 4.6 m, 200 kHz at 2.6 m, and 70, 120 and 333 kHz within
+  # 1.2 m. Values are rounded up with a margin. Depth = range + 8.5 m draft.
+  surface_exclusion_m: {18000: 60, 38000: 5, 70000: 2, 120000: 2, 200000: 3, 333000: 2}
+  # The exclusion is never shorter than this many pulse lengths (transmit
+  # pulse plus receiver recovery).
+  pulse_factor: 2
+  bottom:
+    reference_hz: 38000
+    min_range_m: 30
+    threshold_db: -30
+    smooth_pings: 31
+    max_jump_m: 20
+    margin_m: 5
+  noise:
+    ping_block: 60
+    range_block_m: 10
+    min_range_m: 10
+    min_snr_db: 10
+    # Upper bounds on the noise level per frequency (received power at one
+    # metre, dB): the quietest deep-water median level of the exploration
+    # windows with the gain removed, plus 5 dB. They stop the estimator from
+    # taking weak scattering for noise where no range is noise-limited.
+    max_noise_db: {18000: -151, 38000: -157, 70000: -158, 120000: -148, 200000: -127, 333000: -125}
+  impulsive:
+    lo_m: 50
+    hi_m: 450
+    step_db: 10
+    neighbours: 2
+    bin_m: 1.0
+    min_fraction: 0.5
+
+transects:
+  # Half width of the depth band around the cleaned camera depth in which the
+  # valid fractions per channel are reported.
+  camera_band_half_width_m: 25
+  # Seabed search per transect from the exploration; false disables the search.
+  bottom:
+    20180505T0637Z: {min_range_m: 150, max_range_m: 280}
+    20180509T0018Z: false
+    20180509T0805Z: {min_range_m: 380, max_range_m: 500, threshold_db: -45}
+    20180509T1938Z: {min_range_m: 280, max_range_m: 400}
+  figure:
+    time_step_s: 10
+    depth_step_m: 2
+    frequencies_hz: [38000, 200000]
+
+cruise:
+  label: cruise_1ping_1m
+  ping_factor: 1
+  range_step_m: 1.0
+  overlap_pings: 60
+  n_workers: 16

@@ -1,0 +1,170 @@
+{
+  "stage": "audit-annotations",
+  "created_utc": "2026-09-30T23:58:10+00:00",
+  "package_version": "0.1.0",
+  "hostname": "<host>",
+  "config_hash": "204f448f62009102",
+  "config": {
+    "stage": "audit",
+    "seed": 0,
+    "n_workers": 32,
+    "zarr": {
+      "store": "S2018105_sv.zarr",
+      "floors_db": [
+        -100,
+        -90,
+        -80
+      ],
+      "histogram_range_db": [
+        -130,
+        0
+      ],
+      "histogram_bin_db": 1.0,
+      "gap_thresholds_s": [
+        5,
+        10,
+        60,
+        600
+      ],
+      "transect_windows": {
+        "20180505T0637Z": [
+          "2018-05-05T06:00:00",
+          "2018-05-05T09:00:00"
+        ],
+        "20180509T0018Z": [
+          "2018-05-08T23:45:00",
+          "2018-05-09T03:00:00"
+        ],
+        "20180509T0805Z": [
+          "2018-05-09T07:30:00",
+          "2018-05-09T10:45:00"
+        ],
+        "20180509T1938Z": [
+          "2018-05-09T19:00:00",
+          "2018-05-09T22:30:00"
+        ]
+      }
+    },
+    "annotations": {
+      "image_extensions": [
+        ".jpg",
+        ".jpeg",
+        ".png"
+      ],
+      "exclude_top_level_dirs": [
+        "images",
+        "xml"
+      ],
+      "reconcile_with_source": true
+    },
+    "transects": {
+      "ids_2018": [
+        "20180505T0637Z",
+        "20180509T0018Z",
+        "20180509T0805Z",
+        "20180509T1938Z"
+      ],
+      "ids_2024": [
+        "20241108T1550Z",
+        "20241109T0155Z"
+      ],
+      "cameras": [
+        "Left",
+        "Right"
+      ],
+      "metadata_file": "deepvision.xml",
+      "join_tolerance_ms": 50,
+      "gap_thresholds_s": [
+        1,
+        5,
+        60
+      ],
+      "depth_valid_range_m": [
+        0.5,
+        1500
+      ]
+    },
+    "paths": {
+      "source_data": "<source_data>",
+      "annotated_data": "<annotated_data>",
+      "annotated_data_source": "<annotated_data_source>",
+      "project_dir": "<project_dir>",
+      "scratch_dir": "<scratch_dir>"
+    }
+  },
+  "inputs": {
+    "images": {
+      "path": "<annotated_data>/images",
+      "kind": "dir",
+      "mtime": 1728931228.0
+    },
+    "xml": {
+      "path": "<annotated_data>/xml",
+      "kind": "dir",
+      "mtime": 1729260314.0
+    },
+    "source": {
+      "path": "<annotated_data_source>",
+      "kind": "dir",
+      "mtime": 1713903305.0
+    }
+  },
+  "outputs": {
+    "pairs.parquet": {
+      "sha256": "891296a9dfa2b323d2398baa1f9f1f85b80fb2c93940c5e7496b799a80441703",
+      "size": 415889
+    },
+    "images.parquet": {
+      "sha256": "f33c4b7d869a2ca617a0ee62195cb6603515196f631aa009182b5d58254fef39",
+      "size": 440663
+    },
+    "boxes.parquet": {
+      "sha256": "0f2ac1c2d716dd247800b8430b9b0d9885134d45fe242b2f80eda531bb62d964",
+      "size": 765810
+    },
+    "pairing_by_year.csv": {
+      "sha256": "9f6623c41bf744eda7addf6eb95fae9e92de42b471dc0a232ba0f6997689bdec",
+      "size": 166
+    },
+    "pairing_by_station.csv": {
+      "sha256": "cd69eeeb820c8fab11e9bd835abdaa8b81c6a085aa2aecf6c450af28408f7415",
+      "size": 1668
+    },
+    "labels_by_year.csv": {
+      "sha256": "025ff8a38d8efb7086431a05144cf8541c78125c110708825225e683e31d1d93",
+      "size": 1310
+    },
+    "labels_by_station.csv": {
+      "sha256": "e5141e2f9c923629854db03ba2104b556dc45814a45a6c17694f70bad485bcb6",
+      "size": 7867
+    },
+    "box_size_by_label.csv": {
+      "sha256": "91ea316fd217ac4f0a55f69e1e8ec31f949eaa93e1f1ca5b10ff876fe0597f1f",
+      "size": 6893
+    },
+    "image_sizes.csv": {
+      "sha256": "7afa157e14a0554d52fec0937e9a6bc631f4ab1e6c1f2dc0afcdb83451928e44",
+      "size": 334
+    },
+    "boxes_per_image_by_year.csv": {
+      "sha256": "cc75855fc408e48b73f0f31d7bba9fa4108c675a772b5bba33fd8f25164874c4",
+      "size": 1082
+    },
+    "anomalies_by_year.csv": {
+      "sha256": "c117efa85c7e94dc2d05e0a6f5425097443c20f5bf65df2f415ae894b4d05631",
+      "size": 144
+    },
+    "extra_files.csv": {
+      "sha256": "7aeacbf629b23cedb31d6893002d150a12977ab1f83e44f84836661612bd9984",
+      "size": 1608473
+    },
+    "extra_files_summary.csv": {
+      "sha256": "d05b0f07b4434a10abed03a72cd0ad8fd555555115d3bbf907965dc7e396a7d1",
+      "size": 162
+    },
+    "summary.json": {
+      "sha256": "6d92f4ce504fdef5da39650c41bf63934fe0deb52f7d777d5711d26cc88fed06",
+      "size": 2687
+    }
+  }
+}

@@ -1,0 +1,354 @@
+{
+  "stage": "train-detector",
+  "created_utc": "2026-10-02T22:54:22+00:00",
+  "package_version": "0.1.0",
+  "hostname": "<host>",
+  "config_hash": "9f51696d7298fad3",
+  "config": {
+    "stage": "detector",
+    "seed": 1,
+    "n_workers": 24,
+    "dataset": {
+      "coco_dir": "runs/dataset/coco",
+      "images_subdir": "images",
+      "num_classes": 15
+    },
+    "frameworks": {
+      "rtdetrv2": {
+        "repo": "RT-DETR/rtdetrv2_pytorch",
+        "licence": "Apache-2.0",
+        "base_configs": {
+          "l": "configs/rtdetrv2/rtdetrv2_r50vd_6x_coco.yml",
+          "x": "configs/rtdetrv2/rtdetrv2_r101vd_6x_coco.yml"
+        },
+        "pretrained": {
+          "l": "pretrained/rtdetrv2_r50vd_2x_coco_objects365_from_paddle.pth",
+          "x": "pretrained/rtdetrv2_r101vd_2x_coco_objects365_from_paddle.pth"
+        }
+      },
+      "dfine": {
+        "repo": "D-FINE",
+        "licence": "Apache-2.0",
+        "base_configs": {
+          "l": "configs/dfine/custom/dfine_hgnetv2_l_custom.yml",
+          "x": "configs/dfine/custom/dfine_hgnetv2_x_custom.yml"
+        },
+        "pretrained": {
+          "l": "pretrained/dfine_l_obj2coco_e25.pth",
+          "x": "pretrained/dfine_x_obj2coco.pth"
+        }
+      },
+      "retinanet": {
+        "licence": "BSD-3-Clause",
+        "pretrained": "torchvision"
+      }
+    },
+    "defaults": {
+      "epochs": 40,
+      "batch_size": 16,
+      "lr": 0.0001,
+      "backbone_lr": 1e-05,
+      "weight_decay": 0.0001,
+      "warmup_iterations": 500,
+      "checkpoint_freq": 10,
+      "stop_augmentation_epochs_before_end": 6,
+      "augmentation": {
+        "photometric_p": 0.5,
+        "iou_crop_p": 0.5,
+        "zoom_out": false,
+        "hflip": true,
+        "multiscale": true
+      }
+    },
+    "experiments": {
+      "dfine_l_640": {
+        "framework": "dfine",
+        "size": "l",
+        "input_size": 640
+      },
+      "dfine_l_1024": {
+        "framework": "dfine",
+        "size": "l",
+        "input_size": 1024,
+        "batch_size": 8
+      },
+      "dfine_l_800": {
+        "framework": "dfine",
+        "size": "l",
+        "input_size": 800,
+        "batch_size": 12
+      },
+      "rtdetrv2_l_640": {
+        "framework": "rtdetrv2",
+        "size": "l",
+        "input_size": 640
+      },
+      "rtdetrv2_l_1024": {
+        "framework": "rtdetrv2",
+        "size": "l",
+        "input_size": 1024,
+        "batch_size": 8
+      },
+      "dfine_x_640": {
+        "framework": "dfine",
+        "size": "x",
+        "input_size": 640
+      },
+      "dfine_x_1024": {
+        "framework": "dfine",
+        "size": "x",
+        "input_size": 1024,
+        "batch_size": 8
+      },
+      "retinanet_640": {
+        "framework": "retinanet",
+        "size": "r50",
+        "input_size": 640
+      },
+      "retinanet_1024": {
+        "framework": "retinanet",
+        "size": "r50",
+        "input_size": 1024,
+        "batch_size": 8
+      },
+      "smoke_dfine_l_640": {
+        "framework": "dfine",
+        "size": "l",
+        "input_size": 640,
+        "epochs": 1,
+        "batch_size": 8,
+        "checkpoint_freq": 1
+      },
+      "smoke_retinanet_640": {
+        "framework": "retinanet",
+        "size": "r50",
+        "input_size": 640,
+        "epochs": 1,
+        "batch_size": 8
+      }
+    },
+    "evaluation": {
+      "iou_threshold": 0.5,
+      "score_threshold": 0.001,
+      "n_boot": 200,
+      "min_gt_for_macro": 10,
+      "class_sets": {
+        "label_classes": [
+          "krill",
+          "benthosema",
+          "bluewhiting",
+          "mackerel",
+          "herring"
+        ]
+      },
+      "batch_size": 16
+    },
+    "summary": {
+      "compare": [
+        [
+          "dfine_l_640",
+          "dfine_l_1024"
+        ],
+        [
+          "dfine_l_1024",
+          "rtdetrv2_l_1024"
+        ],
+        [
+          "dfine_l_1024",
+          "retinanet_1024"
+        ]
+      ],
+      "object_rule_slices": [
+        {
+          "split": "val",
+          "slice": "2018"
+        },
+        {
+          "split": "test",
+          "slice": "2018"
+        },
+        {
+          "split": "test",
+          "slice": "2020-2023"
+        },
+        {
+          "split": "val",
+          "slice": "all"
+        },
+        {
+          "split": "test",
+          "slice": "all"
+        }
+      ],
+      "resolution_checks": [
+        {
+          "split": "val",
+          "slice": "2018"
+        },
+        {
+          "split": "test",
+          "slice": "2018"
+        },
+        {
+          "split": "val",
+          "slice": "all"
+        }
+      ],
+      "confusion_checks": [
+        {
+          "class": "herring",
+          "split": "test",
+          "slice": "2020-2023"
+        },
+        {
+          "class": "herring",
+          "split": "val",
+          "slice": "2018"
+        },
+        {
+          "class": "herring",
+          "split": "test",
+          "slice": "2018"
+        },
+        {
+          "class": "krill",
+          "split": "test",
+          "slice": "2020-2023"
+        },
+        {
+          "class": "krill",
+          "split": "test_2024",
+          "slice": "2024"
+        }
+      ]
+    },
+    "calibration": {
+      "methods": [
+        "temperature",
+        "platt",
+        "isotonic"
+      ],
+      "method": "platt",
+      "fit_on": "all",
+      "focus_year": "2018",
+      "min_focus_detections": 200,
+      "n_bins": 15,
+      "score_floor": 0.05,
+      "n_folds": 2
+    },
+    "inference": {
+      "transects": [
+        "20180505T0637Z",
+        "20180509T0018Z",
+        "20180509T0805Z",
+        "20180509T1938Z"
+      ],
+      "cameras": [
+        "Left"
+      ],
+      "score_floor": 0.05,
+      "count_thresholds": [
+        0.05,
+        0.1,
+        0.2,
+        0.3,
+        0.5
+      ],
+      "resolution_iou": 0.7,
+      "batch_size": 16,
+      "review": {
+        "per_sheet": 10,
+        "seed": 0,
+        "sets": [
+          {
+            "class_name": "krill",
+            "bands": [
+              [
+                0.05,
+                0.3
+              ],
+              [
+                0.3,
+                0.6
+              ],
+              [
+                0.6,
+                1.01
+              ]
+            ],
+            "n_per_band": 50
+          },
+          {
+            "class_name": "maurolicus",
+            "bands": [
+              [
+                0.3,
+                1.01
+              ]
+            ],
+            "n_per_band": 50
+          }
+        ]
+      }
+    },
+    "camera_series": {
+      "interval_s": 10,
+      "audit": {
+        "excerpt_minutes": 20,
+        "far_threshold_m": 5
+      },
+      "trend_window_s": 30,
+      "smooth_window_s": 30,
+      "speed_quantile": 0.95,
+      "outlier_mads": 3.0,
+      "max_gap_s": 10,
+      "join_tolerance_ms": 50
+    },
+    "paths": {
+      "source_data": "<source_data>",
+      "annotated_data": "<annotated_data>",
+      "annotated_data_source": "<annotated_data_source>",
+      "project_dir": "<project_dir>",
+      "scratch_dir": "<scratch_dir>"
+    },
+    "experiment": "rtdetrv2_l_1024"
+  },
+  "inputs": {
+    "train": {
+      "path": "<project_dir>/runs/dataset/coco/train.json",
+      "kind": "file",
+      "size": 3376002,
+      "mtime": 1790860902.760077
+    },
+    "val": {
+      "path": "<project_dir>/runs/dataset/coco/val.json",
+      "kind": "file",
+      "size": 666327,
+      "mtime": 1790860903.0520601
+    },
+    "pretrained": {
+      "path": "<scratch_dir>/pretrained/rtdetrv2_r50vd_2x_coco_objects365_from_paddle.pth",
+      "kind": "file",
+      "size": 172529645,
+      "mtime": 1790861507.2094386
+    }
+  },
+  "outputs": {
+    "framework_config.yml": {
+      "sha256": "666d9dd5a05105221f61fb6eafa1654a338df22b3d47325b01fdb9ecf8c85754",
+      "size": 2314
+    },
+    "training_log.csv": {
+      "sha256": "13a98bbf726cebba00a55f051d7a50e5962e2a3b7fb7ba5f0b84aad07f50faf8",
+      "size": 35762
+    },
+    "../../../../weights/detector/rtdetrv2_l_1024_seed1.pth": {
+      "sha256": "78f7bc8ba7f1c30346f52624e81931b37d87c8575b434118ddfedc3f41207ed3",
+      "size": 686422305
+    },
+    "summary.json": {
+      "sha256": "815256be09615cd40aa899caf74616267fae82d3790ef42ac7dd65fd258390e6",
+      "size": 468
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "experiment": "rtdetrv2_l_1024",
+  "seed": 0,
+  "transect": "20180509T1938Z",
+  "camera": "Left",
+  "interval_s": 10.0,
+  "depth": {
+    "n_frames": 40117,
+    "frame_interval_s": 0.20299999999997453,
+    "trend_window_frames": 149,
+    "smooth_window_frames": 149,
+    "speed_bound_m_per_s": 0.6430868167203014,
+    "residual_scale_m": 5.782139999999966,
+    "tolerance_m": 26.99272225080442,
+    "reading_flags": {
+      "consistent": 37687,
+      "dropout": 1914,
+      "rejected": 516
+    },
+    "depth_sources": {
+      "median": 40117
+    },
+    "fraction_rejected": 0.012862377545678889,
+    "fraction_with_depth": 1.0,
+    "raw_scatter_iqr_m": 9.500000000000023,
+    "clean_speed_p95_m_per_s": 0.42029321243009454,
+    "depth_clean_quantiles_m": {
+      "q05": 3.2,
+      "q50": 192.4,
+      "q95": 284.3
+    }
+  },
+  "n_frames_joined": 40117,
+  "n_frames_unjoined": 1,
+  "n_intervals": 814,
+  "n_intervals_without_frames": 0,
+  "n_intervals_without_depth": 0
+}

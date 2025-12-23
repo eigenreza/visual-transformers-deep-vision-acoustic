@@ -1,0 +1,66 @@
+{
+  "experiment": "rtdetrv2_l_1024",
+  "seed": 2,
+  "n_detections": 453000,
+  "n_true_positives": 4053,
+  "focus_year": "2018",
+  "n_focus_detections": 8400,
+  "chosen": "platt_all",
+  "calibrator": {
+    "method": "platt",
+    "params": {
+      "slope": 1.6204132284006727,
+      "intercept": -0.969181365257311
+    }
+  },
+  "ece_all": {
+    "identity": 0.014950932572219548,
+    "temperature_all": 0.001529009432749553,
+    "temperature_2018": 0.002078192694315602,
+    "platt_all": 0.0003418662493201655,
+    "platt_2018": 0.0015031848760563165,
+    "isotonic_all": 1.7155850750271594e-10
+  },
+  "ece_2018": {
+    "identity": 0.01520378862108503,
+    "temperature_all": 0.00279093425683277,
+    "temperature_2018": 0.0032067867718173046,
+    "platt_all": 0.0018036077563420038,
+    "platt_2018": 0.0009624983043468161,
+    "isotonic_all": 0.0016686430589661107
+  },
+  "nll_all": {
+    "identity": 0.02163642404877372,
+    "temperature_all": 0.009705002937438678,
+    "temperature_2018": 0.009852796957882461,
+    "platt_all": 0.008921224992940218,
+    "platt_2018": 0.009814645985577575,
+    "isotonic_all": 0.008635204083993564
+  },
+  "nll_2018": {
+    "identity": 0.022577289291788885,
+    "temperature_all": 0.012893678464615496,
+    "temperature_2018": 0.012730752572811609,
+    "platt_all": 0.010734442793619662,
+    "platt_2018": 0.00994345459862853,
+    "isotonic_all": 0.010179863021854727
+  },
+  "cross_fitted_ece_all_above_0.05": {
+    "temperature": 0.02808695303520939,
+    "platt": 0.015100500130008132,
+    "isotonic": 0.01816362433005937,
+    "identity": 0.07658675217917421
+  },
+  "cross_fitted_ece_2018_above_0.05": {
+    "temperature": 0.07127877476356798,
+    "platt": 0.04968338164022078,
+    "isotonic": 0.040782398633700985,
+    "identity": 0.10162284709302719
+  },
+  "cross_fitted_nll_all_above_0.05": {
+    "temperature": 0.16788573386379643,
+    "platt": 0.15613705881490686,
+    "isotonic": 0.1603165859584821,
+    "identity": 0.19628831408294756
+  }
+}

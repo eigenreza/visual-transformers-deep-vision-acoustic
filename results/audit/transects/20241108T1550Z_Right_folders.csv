@@ -1,0 +1,3 @@
+folder,kind,is_zip,n_files,n_images,total_mb,first,last,n_without_timestamp,median_interval_s
+155025Z_empty,empty,False,296,296,54.812695,2024-11-08 15:50:25.387,2024-11-08 15:51:24.539,0,0.201
+155025Z_empty.zip,empty,True,296,296,54.812695,2024-11-08 15:50:25.387,2024-11-08 15:51:24.539,0,0.201
