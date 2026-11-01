@@ -16,7 +16,7 @@ The Deep Vision camera photographs organisms as they pass through a trawl, five 
 
 ![Pipeline](docs/figures/pipeline.png)
 
-*The pipeline. The detector stages are in colour; the acoustic integration, planned as future work, is in grey.*
+*The pipeline. The detector stages are in colour; the acoustic integration is in grey.*
 
 Images and annotation files are paired by relative path, and 42 raw labels are mapped to thirteen classes and one class for unidentified objects. Whole tows are assigned to training, validation and test by a seeded search that balances classes and years; all 2024 material is held out. RT-DETRv2-L, D-FINE-L and a RetinaNet reference are trained under one recipe at 1,024 pixels and scored by the same code with bootstrap intervals over images. Confidence is calibrated by Platt scaling on the validation split, and each class receives the threshold that maximises its F1 there. The selected detector runs on every frame of four transects; boxes of fixed structure such as the camera housing are removed, and frames and detections are aggregated to ten-second intervals with the cleaned camera depth. `docs/methods.md` describes every step.
 
@@ -46,9 +46,6 @@ Three seeds give a test macro mAP50 of 0.806, 0.797 and 0.805. The choice betwee
 
 `docs/results.md` holds every table and figure.
 
-## Future work
-
-The detections are meant to supervise acoustic species models: models that read the multi-frequency echosounder record of the vessel and learn from what the camera saw in the same water. This needs the position of the trawl and a time base synchronised with the echosounder, which the 2018 material lacks. The package already holds the acoustic preprocessing, alignment and window construction for that step; no results are reported for them.
 
 ## Reproducing
 
